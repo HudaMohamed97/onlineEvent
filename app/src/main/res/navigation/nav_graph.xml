@@ -14,17 +14,27 @@
         android:id="@+id/secondFragment"
         android:name="com.OnlineEvent.umangburman.event.SecondFragment"
         android:label="Second Fragment"
-        tools:layout="@layout/second_fragment" />
+        tools:layout="@layout/second_fragment"
+
+
+        />
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.OnlineEvent.umangburman.event.ThirdFragment"
         android:label="Third Fragment"
+
         tools:layout="@layout/third_fragment" />
     <fragment
         android:id="@+id/defaultFragment"
         android:name="com.OnlineEvent.umangburman.event.DefaultFragment"
         android:label="Default Fragment"
-        tools:layout="@layout/default_fragment" >
+        tools:layout="@layout/default_fragment">
+
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/firstFragment" />
+
     </fragment>
+
 
 </navigation>
