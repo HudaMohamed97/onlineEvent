@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/defaultFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.OnlineEvent.umangburman.event.FirstFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/first_fragment" />
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.OnlineEvent.umangburman.event.SecondFragment"
+        android:label="Second Fragment"
+        tools:layout="@layout/second_fragment" />
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.OnlineEvent.umangburman.event.ThirdFragment"
+        android:label="Third Fragment"
+        tools:layout="@layout/third_fragment" />
+    <fragment
+        android:id="@+id/defaultFragment"
+        android:name="com.OnlineEvent.umangburman.event.DefaultFragment"
+        android:label="Default Fragment"
+        tools:layout="@layout/default_fragment" >
+    </fragment>
+
+</navigation>
