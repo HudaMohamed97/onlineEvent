@@ -1,9 +1,8 @@
 package com.OnlineEvent.umangburman.event;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -17,8 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity implements
-        Lock, NavigationView.OnNavigationItemSelectedListener {
-    public Button button;
+        ActivityDrawerHandler, NavigationView.OnNavigationItemSelectedListener {
     public Toolbar toolbar;
 
     public DrawerLayout drawerLayout;
@@ -38,21 +36,9 @@ public class MainActivity extends AppCompatActivity implements
     // Setting Up One Time Navigation
     private void setupNavigation() {
 
-        button = findViewById(R.id.button);
-       // toolbar = findViewById(R.id.toolbar);
+        // toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    drawerLayout.openDrawer(GravityCompat.START);
-                }
-            }
-        });
      /*   setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(null);          // to hide Navigation icon
         getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -138,5 +124,28 @@ public class MainActivity extends AppCompatActivity implements
             getSupportActionBar().show();
 
         }
+    }
+
+    @Override
+    public void showDrwer(Boolean show) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
+    }
+
+    @Override
+    public void hideItem(String menuId) {
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.second).setVisible(false);
+
+    }
+
+    @Override
+    public void showItem(String menuId) {
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.second).setVisible(true);
+
     }
 }

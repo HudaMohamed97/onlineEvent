@@ -35,18 +35,24 @@ public class DefaultFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button button2 = root.findViewById(R.id.button2);
+        ((MainActivity) getActivity()).hideItem("second");
+
         button2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_login_to_home);
+                ((MainActivity) getActivity()).showDrwer(true);
+
+                //Navigation.findNavController(view).navigate(R.id.action_login_to_home);
             }
         });
     }
 
     @Override
     public void onDestroy() {
+        ((MainActivity) getActivity()).showDrwer(true);
         ((MainActivity) getActivity()).setDrawerLocked(false);
+        ((MainActivity) getActivity()).showItem("second");
         // ((MainActivity) getActivity()).hideToolbar(false);
 
         super.onDestroy();
