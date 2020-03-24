@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -34,10 +35,15 @@ public class DefaultFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button2 = root.findViewById(R.id.button2);
-        ((MainActivity) getActivity()).hideItem("second");
+        WebView webView;
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        webView = root.findViewById(R.id.webView1);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("https://event-on.cat-sw.com/meeting/2");
+
+        // ((MainActivity) getActivity()).hideItem("second");
+
+       /* button2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -45,7 +51,7 @@ public class DefaultFragment extends Fragment {
 
                 //Navigation.findNavController(view).navigate(R.id.action_login_to_home);
             }
-        });
+        });*/
     }
 
     @Override

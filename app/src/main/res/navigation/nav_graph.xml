@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/defaultFragment">
+    app:startDestination="@id/LoginFragment">
 
     <fragment
         android:id="@+id/firstFragment"
@@ -29,6 +29,16 @@
         android:name="com.OnlineEvent.umangburman.event.DefaultFragment"
         android:label="Default Fragment"
         tools:layout="@layout/default_fragment">
+
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/firstFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.OnlineEvent.umangburman.event.LoginFragment.LoginFragment"
+        tools:layout="@layout/login_fragment">
 
         <action
             android:id="@+id/action_login_to_home"

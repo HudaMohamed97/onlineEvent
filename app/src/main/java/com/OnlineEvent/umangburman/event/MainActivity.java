@@ -1,10 +1,14 @@
 package com.OnlineEvent.umangburman.event;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +34,14 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupNavigation();
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener
+                (this, instanceIdResult -> {
+                    String mToken = instanceIdResult.getToken();
+                    Log.i("hhhhh", "token" + mToken);
+
+                });
+
 
     }
 
@@ -90,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements
 
             case R.id.third:
                 navController.navigate(R.id.thirdFragment);
+                break;
+            case R.id.logout:
+                this.finish();
+
                 break;
 
         }
