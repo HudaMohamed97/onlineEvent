@@ -9,7 +9,12 @@
         android:id="@+id/firstFragment"
         android:name="com.OnlineEvent.umangburman.event.HomeFragment.HomeFragment"
         android:label="First Fragment"
-        tools:layout="@layout/first_fragment" />
+        tools:layout="@layout/first_fragment">
+        <action
+            android:id="@+id/action_Home_to_third"
+            app:destination="@id/firstFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.OnlineEvent.umangburman.event.SecondFragment"
