@@ -6,13 +6,16 @@
     app:startDestination="@id/LoginFragment">
 
     <fragment
-        android:id="@+id/firstFragment"
+        android:id="@+id/HomeFragment"
         android:name="com.OnlineEvent.umangburman.event.HomeFragment.HomeFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment">
         <action
             android:id="@+id/action_Home_to_third"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
     </fragment>
 
     <fragment
@@ -37,7 +40,7 @@
 
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/HomeFragment" />
 
     </fragment>
     <fragment
@@ -47,9 +50,19 @@
 
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/HomeFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/AboutFragment"
+        android:name="com.OnlineEvent.umangburman.event.AboutFragment.AboutFragment"
+        tools:layout="@layout/about_fragment">
 
 
+    </fragment>
+    <activity
+        android:id="@+id/secondActivity"
+        android:name="com.OnlineEvent.umangburman.event.Main2Activity">
+
+    </activity>
 </navigation>

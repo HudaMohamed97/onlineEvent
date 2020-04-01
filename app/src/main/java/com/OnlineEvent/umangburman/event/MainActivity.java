@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (id) {
             case R.id.first:
-                navController.navigate(R.id.firstFragment);
+                navController.navigate(R.id.HomeFragment);
                 break;
 
             case R.id.second:

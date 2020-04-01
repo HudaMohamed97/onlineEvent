@@ -1,4 +1,13 @@
-package com.huda.mypatienttracker.LoginFragment
+package com.OnlineEvent.umangburman.event.LoginFragment
+
+import androidx.lifecycle.MutableLiveData
+import com.OnlineEvent.umangburman.event.Models.LoginRequestModel
+import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
+import com.example.myapplication.Models.ResponseModelData
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginRepository {
@@ -6,13 +15,13 @@ class LoginRepository {
         const val ERROR_CODE = 401   //this for Wrong Password
     }
 
-   /* fun login(email: String, password: String): MutableLiveData<ResponseModelData> {
+    fun login(email: String, password: String): MutableLiveData<ResponseModelData> {
         val userData = MutableLiveData<ResponseModelData>()
         val body = LoginRequestModel(email.trim(), password)
         Webservice.getInstance().api.login(body).enqueue(object : Callback<ResponseModelData> {
             override fun onResponse(
-                call: Call<ResponseModelData>,
-                response: Response<ResponseModelData>
+                    call: Call<ResponseModelData>,
+                    response: Response<ResponseModelData>
             ) {
                 if (response.isSuccessful) {
                     userData.value = response.body()
@@ -26,27 +35,27 @@ class LoginRepository {
                                 e.message
                             }
                             val dummyResponse =
-                                ResponseModelData(
-                                    "",
-                                    jObjError!!["title"].toString(),
-                                    "",
-                                    Account()
-                                )
+                                    ResponseModelData(
+                                            "",
+                                            jObjError!!["title"].toString(),
+                                            "",
+                                            null
+                                    )
                             userData.value = dummyResponse
                         }
                         response.code() == 422 -> {
                             val dummyResponse =
-                                ResponseModelData(
-                                    "",
-                                    "Password must be at leaast 6 length",
-                                    "",
-                                    Account()
-                                )
+                                    ResponseModelData(
+                                            "",
+                                            "Password must be at leaast 6 length",
+                                            "",
+                                            null
+                                    )
                             userData.value = dummyResponse
                         }
                         else -> {
                             val dummyResponse =
-                                ResponseModelData("", response.message(), "", Account())
+                                    ResponseModelData("", response.message(), "", null)
                             userData.value = dummyResponse
                         }
                     }
@@ -62,7 +71,7 @@ class LoginRepository {
 
         return userData
 
-    }*/
+    }
 
 
 }

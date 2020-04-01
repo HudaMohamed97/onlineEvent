@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.huda.mypatienttracker.NetworkLayer.ApiServices;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Webservice {
-    private static final String MAIN_URL = "http://patient-tracker.cat-sw.com/api/";
+    private static final String MAIN_URL = "https://www.event-test.cat-sw.com/api/";
     private static Webservice instance;
     private ApiServices api;
 
