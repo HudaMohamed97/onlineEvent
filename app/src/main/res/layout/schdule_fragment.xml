@@ -325,6 +325,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/scheduleRecycler"
                         android:layout_width="match_parent"
+                        tools:listitem="@layout/schedule_row_list"
                         android:layout_height="match_parent" />
                 </LinearLayout>
 
