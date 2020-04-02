@@ -13,7 +13,6 @@ import java.util.*
 class PatientAdapter(modelFeedArrayList: ArrayList<PatientResponseData>) :
     RecyclerView.Adapter<PatientAdapter.MyViewHolder>() {
 
-   // lateinit var onItemClickListener: OnCommentClickListener
     private var context: Context? = null
     private var fromTab = ""
 

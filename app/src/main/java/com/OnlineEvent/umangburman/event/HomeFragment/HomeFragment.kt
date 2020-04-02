@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         callHomeData()
+        setProfileImage()
         backButton.setOnClickListener {
             (activity as MainActivity).showDrwer(true)
         }
@@ -60,7 +61,17 @@ class HomeFragment : Fragment() {
         about_button.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
         }
+        back.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+        }
 
+    }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
 
@@ -69,6 +80,9 @@ class HomeFragment : Fragment() {
         val uri = Uri.parse(uriPath)
         videoView.setZOrderMediaOverlay(true)
         videoView.setVideoURI(uri)
+        val mediaController = MediaController(this.context)
+        mediaController.show(1)
+        videoView.setMediaController(mediaController)
         videoView.start()
         videoView.setOnPreparedListener {
             videoProgressBar.visibility = View.GONE
@@ -90,12 +104,16 @@ class HomeFragment : Fragment() {
                 //loadVideo(it.video)
                 loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
                 val imageList = arrayListOf<String>()
+                val videoList = arrayListOf<String>()
                 for (image in it.sliders) {
                     if (image.is_image) {
                         imageList.add(image.photo)
+                    } else {
+                        videoList.add(image.video_url)
                     }
                 }
-                setFlipperImage(imageList)
+
+                setFlipperImage(imageList, videoList)
                 Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 
             } else {
@@ -106,7 +124,7 @@ class HomeFragment : Fragment() {
     }
 
     @SuppressLint("ResourceType")
-    private fun setFlipperImage(res: ArrayList<String>) {
+    private fun setFlipperImage(res: ArrayList<String>, videoList: ArrayList<String>) {
         var count = 0
         var imagesView: ImageView? = null
         for (image in res) {
@@ -131,6 +149,8 @@ class HomeFragment : Fragment() {
                 flipper.addView(imagesView)
                 count++
             }
+        }
+        for (video in videoList) {
             video_view = VideoView(this.context)
             val uri = Uri.parse("https://www.demonuts.com/Demonuts/smallvideo.mp4")
             var bitmap = retriveVideoFrameFromVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
@@ -148,6 +168,7 @@ class HomeFragment : Fragment() {
                 video_view.setBackgroundResource(R.color.transparent)
             }
         }
+
         imagesView?.setOnClickListener {
             if (imagesView.id == 0) {
                 Toast.makeText(activity, "ImageClicked", Toast.LENGTH_SHORT).show()
