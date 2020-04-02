@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "760666949958",
+    "firebase_url": "https://navigation-drawer-with-n-12847.firebaseio.com",
+    "project_id": "navigation-drawer-with-n-12847",
+    "storage_bucket": "navigation-drawer-with-n-12847.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760666949958:android:705eb91017940970fe7d47",
+        "android_client_info": {
+          "package_name": "com.OnlineEvent.umangburman.event"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760666949958-2iqupce0j79t2k13m9nsv9rdk1jadtpq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.OnlineEvent.umangburman.event",
+            "certificate_hash": "bcf83f9446753a764242cc10f769a390bcbf0187"
+          }
+        },
+        {
+          "client_id": "760666949958-5gvrhrol5r84q3g9aenr9rs7dl2vodkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD-ooqV9xr9eSomCOWpb1LmZwGyo2ilJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760666949958-5gvrhrol5r84q3g9aenr9rs7dl2vodkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
