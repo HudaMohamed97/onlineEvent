@@ -28,6 +28,8 @@ import android.graphics.drawable.Drawable
 
 
 class HomeFragment : Fragment() {
+    private var root: View? = null
+    private var fromBack = false
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var video_view: VideoView
     private lateinit var loginPreferences: SharedPreferences
@@ -36,14 +38,36 @@ class HomeFragment : Fragment() {
         (activity as MainActivity).setDrawerLocked(false)
         (activity as MainActivity).showItem("second")
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        return inflater.inflate(R.layout.first_fragment, container, false)
+
+        return if (root != null) {
+            fromBack = true
+            root
+        } else {
+            fromBack = false
+            root = inflater.inflate(R.layout.first_fragment, container, false)
+            root
+        }
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-        callHomeData()
+        if (!fromBack) {
+            callHomeData()
+        }
+        setListeners()
         setProfileImage()
+    }
+
+    private fun setListeners() {
+      /*  videoLayout.setOnClickListener {
+            play_button.visibility = View.VISIBLE
+        }
+        play_button.setOnClickListener {
+        }
+*/
+
         backButton.setOnClickListener {
             (activity as MainActivity).showDrwer(true)
         }
@@ -61,10 +85,12 @@ class HomeFragment : Fragment() {
         about_button.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
         }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
         back.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
         }
-
     }
 
     private fun setProfileImage() {

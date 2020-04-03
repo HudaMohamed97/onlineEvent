@@ -12,16 +12,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.OnlineEvent.umangburman.event.Adapter.PatientAdapter
-import com.OnlineEvent.umangburman.event.Models.PatientResponseData
 import com.OnlineEvent.umangburman.event.R
 
 
 class NotificationListFragment : Fragment() {
     private lateinit var root: View
     private lateinit var notificationListViewModel: NotificationListViewModel
-    private val modelFeedArrayList = arrayListOf<PatientResponseData>()
-    private lateinit var patientAdapter: PatientAdapter
+  /*  private val modelFeedArrayList = arrayListOf<PatientResponseData>()
+    private lateinit var patientAdapter: PatientAdapter*/
     private lateinit var recyclerView: RecyclerView
     private lateinit var loginPreferences: SharedPreferences
     var mHasReachedBottomOnce = false
@@ -102,9 +100,9 @@ class NotificationListFragment : Fragment() {
 
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        patientAdapter = PatientAdapter(modelFeedArrayList)
+       // patientAdapter = PatientAdapter(modelFeedArrayList)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = patientAdapter
+       // recyclerView.adapter = patientAdapter
 /*
         patientAdapter.setOnCommentListener(object : PatientAdapter.OnCommentClickListener {
             override fun onDotsImageClicked(position: Int, fromTab: String) {

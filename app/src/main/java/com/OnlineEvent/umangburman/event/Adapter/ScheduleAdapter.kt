@@ -5,23 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.OnlineEvent.umangburman.event.Models.PatientResponseData
+import com.OnlineEvent.umangburman.event.Models.SchduleResponseData
 import com.OnlineEvent.umangburman.event.R
 import java.util.*
 
 
-class PatientAdapter(modelFeedArrayList: ArrayList<PatientResponseData>) :
-    RecyclerView.Adapter<PatientAdapter.MyViewHolder>() {
+class ScheduleAdapter(modelFeedArrayList: ArrayList<SchduleResponseData>) :
+        RecyclerView.Adapter<ScheduleAdapter.MyViewHolder>() {
 
     private var context: Context? = null
     private var fromTab = ""
+    lateinit var onItemClickListener: OnClickListener
 
 
     override fun getItemCount(): Int {
         return modelFeedArrayList.size
     }
 
-    var modelFeedArrayList = ArrayList<PatientResponseData>()
+    var modelFeedArrayList = ArrayList<SchduleResponseData>()
 
 
     init {
@@ -37,32 +38,27 @@ class PatientAdapter(modelFeedArrayList: ArrayList<PatientResponseData>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val modelFeed = modelFeedArrayList[position]
-      /*  holder.tvName.text = "hospital"
-         //   modelFeed.hospital?.name
-        holder.doctorName.text = modelFeed.name
-        holder.time.text = modelFeed.created_at*/
-
-
-
-
+        /*  holder.tvName.text = "hospital"
+           //   modelFeed.hospital?.name
+          holder.doctorName.text = modelFeed.name
+          holder.time.text = modelFeed.created_at*/
 
 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-      /*  var dotsImage:ImageView = itemView.findViewById(R.id.textViewOptions)
-        var tvName: TextView = itemView.findViewById<View>(R.id.hospitalName) as TextView*/
+        /*  var dotsImage:ImageView = itemView.findViewById(R.id.textViewOptions)
+          var tvName: TextView = itemView.findViewById<View>(R.id.hospitalName) as TextView*/
 
 
     }
 
-   /* interface OnCommentClickListener {
-        fun onDotsImageClicked(position: Int, fromTab: String)
+    interface OnClickListener {
+        fun onItemClicked(position: Int, fromTab: String)
     }
 
-    fun setOnCommentListener(onCommentClickListener: OnCommentClickListener) {
+    fun setOnCommentListener(onCommentClickListener: OnClickListener) {
         this.onItemClickListener = onCommentClickListener
     }
-*/
 }
