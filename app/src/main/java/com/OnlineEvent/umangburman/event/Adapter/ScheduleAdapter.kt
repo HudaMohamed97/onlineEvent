@@ -1,20 +1,24 @@
 package com.OnlineEvent.umangburman.event.Adapter
 
 import android.content.Context
+import android.os.Build
+import android.text.Html
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.OnlineEvent.umangburman.event.Models.SchduleResponseData
+import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
+import kotlinx.android.synthetic.main.about_fragment.*
 import java.util.*
 
 
-class ScheduleAdapter(modelFeedArrayList: ArrayList<SchduleResponseData>) :
+class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
         RecyclerView.Adapter<ScheduleAdapter.MyViewHolder>() {
 
     private var context: Context? = null
-    private var fromTab = ""
     lateinit var onItemClickListener: OnClickListener
 
 
@@ -22,7 +26,7 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<SchduleResponseData>) :
         return modelFeedArrayList.size
     }
 
-    var modelFeedArrayList = ArrayList<SchduleResponseData>()
+    var modelFeedArrayList = ArrayList<ScheduleResponse>()
 
 
     init {
@@ -31,25 +35,33 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<SchduleResponseData>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_row_list, parent, false)
         context = parent.context
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val modelFeed = modelFeedArrayList[position]
-        /*  holder.tvName.text = "hospital"
-           //   modelFeed.hospital?.name
-          holder.doctorName.text = modelFeed.name
-          holder.time.text = modelFeed.created_at*/
+        holder.eventDescription.movementMethod = ScrollingMovementMethod()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            holder.eventDescription.text = Html.fromHtml(modelFeed.description, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            holder.eventDescription.text = Html.fromHtml(modelFeed.description)
+        }
+        holder.date.text = modelFeed.start_date
+        val start = modelFeed.start_date
+        val end = modelFeed.end_date
+        holder.time.text = "$start $end"
+        holder.EventName.text = modelFeed.name
 
 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        /*  var dotsImage:ImageView = itemView.findViewById(R.id.textViewOptions)
-          var tvName: TextView = itemView.findViewById<View>(R.id.hospitalName) as TextView*/
+        var date: TextView = itemView.findViewById<View>(R.id.date) as TextView
+        var eventDescription: TextView = itemView.findViewById<View>(R.id.eventDescription) as TextView
+        var EventName: TextView = itemView.findViewById<View>(R.id.EventName) as TextView
+        var time: TextView = itemView.findViewById<View>(R.id.time) as TextView
 
 
     }

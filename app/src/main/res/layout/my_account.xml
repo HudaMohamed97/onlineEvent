@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/not_black">
+        android:background="@color/semi_white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                 android:id="@+id/homeButtons"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_50"
-                android:background="@color/not_blue"
+                android:background="@color/app_color_pink"
                 android:orientation="horizontal"
                 android:weightSum="4"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -110,9 +110,7 @@
                     android:id="@+id/about_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/space_5"
                     android:layout_weight="1"
-                    android:background="@color/base_color"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="About"
@@ -122,9 +120,7 @@
                     android:id="@+id/schedule_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/space_5"
                     android:layout_weight="1"
-                    android:background="@color/base_color"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="Schedule"
@@ -135,9 +131,7 @@
                     android:id="@+id/myevent_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/space_5"
                     android:layout_weight="1"
-                    android:background="@color/base_color"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="My Event"
@@ -148,7 +142,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/base_color"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="Network"
@@ -189,33 +182,33 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:orientation="vertical">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="My Aaccount"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
 
                         <View
                             android:layout_width="100dp"
                             android:layout_height="5dp"
                             android:layout_marginTop="@dimen/space_5"
-                            android:background="@color/red" />
+                            android:background="@color/app_color_pink" />
                     </LinearLayout>
 
                     <Button
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/app_color_pink"
                         android:text="Edit Account"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/red" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -257,21 +250,21 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Name"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
                             android:layout_marginTop="@dimen/space_5"
                             android:background="@android:color/darker_gray"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
 
                         <TextView
                             android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Email address"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
 
                         <View
                             android:layout_width="match_parent"
@@ -284,7 +277,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Phone"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
 
                         <View
                             android:layout_width="match_parent"
@@ -297,7 +290,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="status"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/app_color_pink" />
                     </LinearLayout>
 
                 </RelativeLayout>

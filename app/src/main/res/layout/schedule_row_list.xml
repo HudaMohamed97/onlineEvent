@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/hospitalNameCoe"
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/space_5"
             android:layout_marginEnd="@dimen/space_10"
-            android:text="hospitalName"
+            android:text="date"
             android:textColor="@color/black" />
 
         <View
@@ -40,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/space_5"
+                android:layout_marginBottom="@dimen/space_20"
                 android:layout_marginStart="@dimen/space_10">
 
                 <TextView
@@ -56,7 +57,7 @@
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_10"
+                    android:layout_marginTop="@dimen/space_20"
                     android:text="9.00 to 10:00 Am"
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -67,6 +68,7 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_10"
                     android:backgroundTint="@color/yellow"
                     android:text="Live Now"
                     android:textColor="@color/white"
@@ -98,8 +100,11 @@
                 android:background="@color/not_black" />
 
             <TextView
+                android:id="@+id/eventDescription"
                 android:layout_width="wrap_content"
+                android:scrollbars = "vertical"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
                 android:layout_marginStart="@dimen/space_10"
                 android:layout_marginBottom="30dp"
                 android:layout_weight="2"
@@ -121,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_10"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/app_color_pink"
         android:text="Learn More"
         android:textColor="@color/white"
         android:textSize="12sp"
