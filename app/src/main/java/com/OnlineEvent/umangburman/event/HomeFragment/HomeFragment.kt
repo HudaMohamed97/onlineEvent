@@ -61,19 +61,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
-      /*  videoLayout.setOnClickListener {
-            play_button.visibility = View.VISIBLE
-        }
-        play_button.setOnClickListener {
-        }
-*/
-
         backButton.setOnClickListener {
             (activity as MainActivity).showDrwer(true)
         }
         val mediaController = MediaController(activity)
         mediaController.setAnchorView(videoView)
-        videoView.setZOrderMediaOverlay(true)
+        videoView.setZOrderOnTop(true)
+        //videoView.setZOrderMediaOverlay(true)
         videoView.requestFocus()
         videoView.setMediaController(mediaController)
         button.setOnClickListener {
@@ -87,6 +81,12 @@ class HomeFragment : Fragment() {
         }
         schedule_button.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
         }
         back.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
@@ -104,7 +104,8 @@ class HomeFragment : Fragment() {
     private fun loadVideo(uri: String) {
         val uriPath = uri
         val uri = Uri.parse(uriPath)
-        videoView.setZOrderMediaOverlay(true)
+        videoView.setZOrderOnTop(true)
+        //videoView.setZOrderMediaOverlay(true)
         videoView.setVideoURI(uri)
         val mediaController = MediaController(this.context)
         mediaController.show(1)
@@ -183,7 +184,9 @@ class HomeFragment : Fragment() {
             if (bitmap != null) {
                 bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, false)
             }
-            video_view.setZOrderMediaOverlay(true)
+            video_view.setZOrderOnTop(true)
+
+            //video_view.setZOrderMediaOverlay(true)
             video_view.setVideoURI(uri)
             var ob: Drawable = BitmapDrawable(resources, bitmap)
             video_view.background = ob

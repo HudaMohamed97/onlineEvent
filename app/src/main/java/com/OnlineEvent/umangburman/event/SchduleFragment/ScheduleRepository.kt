@@ -31,6 +31,27 @@ class ScheduleRepository {
         return userData
     }
 
+    fun getEvent(currentPageNum: Int, accessToken: String): MutableLiveData<ScheduleResponseModel> {
+        val userData = MutableLiveData<ScheduleResponseModel>()
+        Webservice.getInstance().api.getMyEvent(currentPageNum, accessToken)
+                .enqueue(object : Callback<ScheduleResponseModel> {
+                    override fun onResponse(
+                            call: Call<ScheduleResponseModel>, response: Response<ScheduleResponseModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            userData.value = response.body()
+                        } else {
+                            userData.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ScheduleResponseModel>, t: Throwable) {
+                        userData.value = null
+                    }
+                })
+        return userData
+    }
+
     fun getSchedulesFiltered(month: String, speaker: Int, topic: String, currentPageNum: Int, accessToken: String): MutableLiveData<ScheduleResponseModel> {
         filtersCondition(month, speaker, topic)
         val userData = MutableLiveData<ScheduleResponseModel>()

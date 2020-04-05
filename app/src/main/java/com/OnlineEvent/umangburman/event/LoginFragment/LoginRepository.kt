@@ -2,6 +2,7 @@ package com.OnlineEvent.umangburman.event.LoginFragment
 
 import androidx.lifecycle.MutableLiveData
 import com.OnlineEvent.umangburman.event.Models.LoginRequestModel
+import com.OnlineEvent.umangburman.event.Models.SubmitModel
 import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
 import com.example.myapplication.Models.ResponseModelData
 import org.json.JSONObject
@@ -65,6 +66,34 @@ class LoginRepository {
             }
 
             override fun onFailure(call: Call<ResponseModelData>, t: Throwable) {
+                userData.value = null
+            }
+        })
+
+        return userData
+
+    }
+
+    fun resetPassword(email: String): MutableLiveData<SubmitModel> {
+        val userData = MutableLiveData<SubmitModel>()
+        val body = mapOf(
+                "email" to email.trim()
+
+        )
+        Webservice.getInstance().api.resetPassword(body).enqueue(object : Callback<SubmitModel> {
+            override fun onResponse(
+                    call: Call<SubmitModel>,
+                    response: Response<SubmitModel>
+            ) {
+                if (response.isSuccessful) {
+                    userData.value = response.body()
+                } else {
+                    userData.value = response.body()
+                }
+
+            }
+
+            override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
                 userData.value = null
             }
         })

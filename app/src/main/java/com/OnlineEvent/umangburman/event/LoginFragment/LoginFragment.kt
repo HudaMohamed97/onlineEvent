@@ -52,6 +52,13 @@ class LoginFragment : Fragment(), LoginInterface {
     }
 
     override fun setClickListeners() {
+        forgetPassword.setOnClickListener {
+            if (findNavController(this).currentDestination?.id == R.id.LoginFragment) {
+                findNavController(this).navigate(R.id.action_login_to_resetPassword)
+
+            }
+        }
+
         showPassword.setOnClickListener {
             var cursor = passwordEt.selectionStart
             if (clicked) {
@@ -82,9 +89,6 @@ class LoginFragment : Fragment(), LoginInterface {
             passwordEt.setText(loginPreferences.getString("password", ""))
             chckRemember.isChecked = true
         }
-
-
-
         button.setOnClickListener {
             checkErrorEnabled()
             hideKeyboard()

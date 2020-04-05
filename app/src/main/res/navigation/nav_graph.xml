@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_Home_to_Schedule"
             app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
     </fragment>
 
     <fragment
@@ -54,6 +60,9 @@
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_login_to_resetPassword"
+            app:destination="@id/ResetPasswordFragment" />
 
     </fragment>
     <fragment
@@ -67,6 +76,27 @@
         android:id="@+id/SchduleFragment"
         android:name="com.OnlineEvent.umangburman.event.SchduleFragment.ScheduleFragment"
         tools:layout="@layout/schdule_fragment">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/EventFragment"
+        android:name="com.OnlineEvent.umangburman.event.EventFragment.EventFragment"
+        tools:layout="@layout/event_fragment">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/AccountFragment"
+        android:name="com.OnlineEvent.umangburman.event.AccountFragment.AccountFragment"
+        tools:layout="@layout/my_account">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/ResetPasswordFragment"
+        android:name="com.OnlineEvent.umangburman.event.ResetPasswordFragment.ResetPasswordFragment"
+        tools:layout="@layout/reset_password_fragment">
 
 
     </fragment>

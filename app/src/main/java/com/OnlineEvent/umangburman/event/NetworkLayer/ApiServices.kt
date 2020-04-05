@@ -4,6 +4,7 @@ import com.OnlineEvent.umangburman.event.Models.AboutModel
 import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
 import com.OnlineEvent.umangburman.event.Models.LoginRequestModel
 import com.OnlineEvent.umangburman.event.Models.SchduleResponseData
+import com.OnlineEvent.umangburman.event.Models.SubmitModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.example.myapplication.Models.ResponseModelData
 import retrofit2.Call
@@ -15,6 +16,9 @@ interface ApiServices {
     @POST("auth/login")
     fun login(@Body loginRequestModel: LoginRequestModel): Call<ResponseModelData>
 
+    @POST("auth/login")
+    fun resetPassword(@Body email: Map<String, String>): Call<SubmitModel>
+
     @GET("about")
     fun getAboutData(@Header("Authorization") authHeader: String): Call<AboutModel>
 
@@ -23,6 +27,9 @@ interface ApiServices {
 
     @GET("my-schedule")
     fun getMySchedule(@Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
+
+    @GET("events")
+    fun getMyEvent(@Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
 
     @GET("my-schedule")
     fun getMyScheduleByFilter(@QueryMap map: Map<String, String>, @Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>

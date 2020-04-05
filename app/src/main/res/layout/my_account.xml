@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#be464545"
+    android:background="@color/semi_white"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginBottom="30dp"
-                android:background="@color/not_blue"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -229,7 +229,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:layout_marginTop="-60dp"
                     android:background="#fff"
                     android:elevation="4dp"
@@ -249,6 +249,7 @@
                             android:id="@+id/name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_10"
                             android:text="Name"
                             android:textColor="@color/app_color_pink" />
 
@@ -263,6 +264,7 @@
                             android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_10"
                             android:text="Email address"
                             android:textColor="@color/app_color_pink" />
 
@@ -276,6 +278,7 @@
                             android:id="@+id/Phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_10"
                             android:text="Phone"
                             android:textColor="@color/app_color_pink" />
 
@@ -289,6 +292,7 @@
                             android:id="@+id/status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_10"
                             android:text="status"
                             android:textColor="@color/app_color_pink" />
                     </LinearLayout>

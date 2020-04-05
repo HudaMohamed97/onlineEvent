@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
@@ -120,8 +120,8 @@
 
             <ImageView
                 android:id="@+id/showPassword"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/space_20"
+                android:layout_height="25dp"
                 android:layout_marginEnd="@dimen/space_5"
                 android:src="@mipmap/show_pass"
                 app:layout_constraintBottom_toBottomOf="parent"
