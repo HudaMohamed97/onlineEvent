@@ -84,6 +84,15 @@
         android:name="com.OnlineEvent.umangburman.event.EventFragment.EventFragment"
         tools:layout="@layout/event_fragment">
 
+        <action
+            android:id="@+id/action_Event_ToDescription"
+            app:destination="@id/EventDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EventDescriptionFragment"
+        android:name="com.OnlineEvent.umangburman.event.DescriptionFragment.DescriptionFragment"
+        tools:layout="@layout/description_fragment">
+
 
     </fragment>
     <fragment
