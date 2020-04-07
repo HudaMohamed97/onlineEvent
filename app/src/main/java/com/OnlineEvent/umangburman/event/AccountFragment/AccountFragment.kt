@@ -6,23 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment
-import com.OnlineEvent.umangburman.event.LoginFragment.LoginViewModel
+import com.OnlineEvent.umangburman.event.HomeFragment.HomeViewModel
 import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import com.example.myapplication.LoginFragment.LoginInterface
-import kotlinx.android.synthetic.main.first_fragment.*
-import kotlinx.android.synthetic.main.first_fragment.imgProfile
 import kotlinx.android.synthetic.main.my_account.*
 import kotlinx.android.synthetic.main.reset_password_fragment.*
 
 
 class AccountFragment : Fragment(), LoginInterface {
     private lateinit var root: View
-    private lateinit var loginViewModel: LoginViewModel
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var loginPreferences: SharedPreferences
 
 
@@ -33,7 +32,7 @@ class AccountFragment : Fragment(), LoginInterface {
     ): View? {
         root = inflater.inflate(R.layout.my_account, container, false)
         (activity as MainActivity).setDrawerLocked(true)
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         return root
     }
 
@@ -41,6 +40,7 @@ class AccountFragment : Fragment(), LoginInterface {
         super.onViewCreated(view, savedInstanceState)
         setClickListeners()
         setProfileImage()
+        callMyAccountData()
     }
 
     override fun setClickListeners() {
@@ -51,25 +51,34 @@ class AccountFragment : Fragment(), LoginInterface {
         val photo = loginPreferences.getString("photo", "")
         Glide.with(context!!).load(photo).centerCrop()
                 .placeholder(R.drawable.profile)
-                .error(R.drawable.profile).into(user_profile_photo)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
 
-    private fun callResetPassword() {
-        /* resetProgressBar.visibility = View.VISIBLE
-         loginViewModel.resetPassword(
-                 email.text.toString()
-         )
-         loginViewModel.getResetData().observe(this, Observer {
-             resetProgressBar.visibility = View.GONE
-             if (it != null) {
-                 Toast.makeText(activity, "Password Reset Successfully", Toast.LENGTH_SHORT).show()
-             } else {
-                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
-             }
+    private fun callMyAccountData() {
+        myAccountProgressBar.visibility = View.VISIBLE
+        val accessToken = loginPreferences.getString("accessToken", "")
+        if (accessToken != null) {
+            homeViewModel.getMyAccountData(accessToken)
+        }
+
+        homeViewModel.AaccountData().observe(this, Observer {
+            myAccountProgressBar.visibility = View.GONE
+            if (it != null) {
+                Glide.with(context!!).load(it.account.photo).centerCrop()
+                        .placeholder(R.drawable.profile)
+                        .error(R.drawable.profile).into(user_profile_photo)
+                name.text = "Name: " + it.account.name
+                account_email.text = "Email: " + it.account.email
+                Phone.text = "Phone: " + it.account.phone
 
 
-         })*/
+            } else {
+                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
+            }
+
+
+        })
 
     }
 

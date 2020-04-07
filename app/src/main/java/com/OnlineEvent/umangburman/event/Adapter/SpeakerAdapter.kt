@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.about_fragment.*
 import java.util.*
 
 
-class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
-        RecyclerView.Adapter<ScheduleAdapter.MyViewHolder>() {
+class SpeakerAdapter(modelFeedArrayList: ArrayList<SpeakerData>) :
+        RecyclerView.Adapter<SpeakerAdapter.MyViewHolder>() {
 
     private var context: Context? = null
     lateinit var onItemClickListener: OnClickListener
@@ -26,7 +30,7 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
         return modelFeedArrayList.size
     }
 
-    var modelFeedArrayList = ArrayList<ScheduleResponse>()
+    var modelFeedArrayList = ArrayList<SpeakerData>()
 
 
     init {
@@ -35,25 +39,20 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_row_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.speaker_row, parent, false)
         context = parent.context
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val modelFeed = modelFeedArrayList[position]
-        holder.eventDescription.movementMethod = ScrollingMovementMethod()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            holder.eventDescription.text = Html.fromHtml(modelFeed.description, Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            holder.eventDescription.text = Html.fromHtml(modelFeed.description)
-        }
-        holder.date.text = modelFeed.start_date
-        val start = modelFeed.start_date
-        val end = modelFeed.end_date
-        holder.time.text = "$start $end"
-        holder.EventName.text = modelFeed.name
-        holder.moreButton.setOnClickListener{
+
+        holder.speakerName.text = modelFeed.name
+        Glide.with(context!!).load(modelFeed .photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(holder.speakerImage)
+
+        holder.itemView.setOnClickListener{
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClicked(position)
             }
@@ -63,11 +62,9 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var date: TextView = itemView.findViewById<View>(R.id.date) as TextView
-        var eventDescription: TextView = itemView.findViewById<View>(R.id.eventDescription) as TextView
-        var EventName: TextView = itemView.findViewById<View>(R.id.EventName) as TextView
-        var time: TextView = itemView.findViewById<View>(R.id.time) as TextView
-        var moreButton = itemView.findViewById<Button>(R.id.learnMoreButton)
+        var speakerName: TextView = itemView.findViewById<View>(R.id.speakerName) as TextView
+        var speakerImage: ImageView = itemView.findViewById(R.id.imgProfile)
+
 
 
     }

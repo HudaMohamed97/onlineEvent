@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.OnlineEvent.umangburman.event.Models.AboutModel
 import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
 import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
+import com.example.myapplication.Models.AccountModelData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +49,28 @@ class HomeRepository {
                     }
 
                     override fun onFailure(call: Call<HomeResponseModel>, t: Throwable) {
+                        data.value = null
+                    }
+                })
+        return data
+    }
+
+    fun getMyAccount(auth: String): MutableLiveData<AccountModelData> {
+        val data = MutableLiveData<AccountModelData>()
+        Webservice.getInstance().api.getMyAaccount(auth)
+                .enqueue(object : Callback<AccountModelData> {
+                    override fun onResponse(
+                            call: Call<AccountModelData>,
+                            response: Response<AccountModelData>
+                    ) {
+                        if (response.isSuccessful) {
+                            data.value = response.body()
+                        } else {
+                            data.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AccountModelData>, t: Throwable) {
                         data.value = null
                     }
                 })

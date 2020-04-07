@@ -1,6 +1,9 @@
 package com.OnlineEvent.umangburman.event.SchduleFragment
 
 import androidx.lifecycle.MutableLiveData
+import com.OnlineEvent.umangburman.event.Models.SpeakerData
+import com.OnlineEvent.umangburman.event.Models.SpeakerProfileModel
+import com.OnlineEvent.umangburman.event.Models.SpeakerResponseModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
 import retrofit2.Call
@@ -46,6 +49,48 @@ class ScheduleRepository {
                     }
 
                     override fun onFailure(call: Call<ScheduleResponseModel>, t: Throwable) {
+                        userData.value = null
+                    }
+                })
+        return userData
+    }
+
+    fun getEventSpeakers(eventId: Int, accessToken: String): MutableLiveData<SpeakerResponseModel> {
+        val userData = MutableLiveData<SpeakerResponseModel>()
+        Webservice.getInstance().api.getSpeakerEvent(eventId, accessToken)
+                .enqueue(object : Callback<SpeakerResponseModel> {
+                    override fun onResponse(
+                            call: Call<SpeakerResponseModel>, response: Response<SpeakerResponseModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            userData.value = response.body()
+                        } else {
+                            userData.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SpeakerResponseModel>, t: Throwable) {
+                        userData.value = null
+                    }
+                })
+        return userData
+    }
+
+    fun getSingleSpeakerSpeakers(speakerId: Int, accessToken: String): MutableLiveData<SpeakerProfileModel> {
+        val userData = MutableLiveData<SpeakerProfileModel>()
+        Webservice.getInstance().api.getSingelSpeakerEvent(speakerId, accessToken)
+                .enqueue(object : Callback<SpeakerProfileModel> {
+                    override fun onResponse(
+                            call: Call<SpeakerProfileModel>, response: Response<SpeakerProfileModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            userData.value = response.body()
+                        } else {
+                            userData.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SpeakerProfileModel>, t: Throwable) {
                         userData.value = null
                     }
                 })

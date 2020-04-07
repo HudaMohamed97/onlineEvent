@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
 import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
@@ -25,6 +26,7 @@ class DescriptionFragment : Fragment() {
     private lateinit var root: View
     private lateinit var learnMoreViewModel: LearnMoreViewModel
     private lateinit var loginPreferences: SharedPreferences
+    private var eventId: Int = 0
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,13 +39,20 @@ class DescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val eventId = arguments?.getInt("EventId")
+        eventId = arguments?.getInt("EventId")!!
         setClickListeners()
-        eventId?.let { callEventsDescription(it) }
+        callEventsDescription(eventId)
     }
 
     private fun setClickListeners() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
+
+        speakersTab.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("EventId", eventId)
+            NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
+        }
+
         backButton.setOnClickListener {
             (activity as MainActivity).showDrwer(true)
         }

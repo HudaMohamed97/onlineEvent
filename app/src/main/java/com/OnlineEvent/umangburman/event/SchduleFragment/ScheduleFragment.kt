@@ -187,7 +187,7 @@ class ScheduleFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = scheduleAdapter
         scheduleAdapter.setOnCommentListener(object : ScheduleAdapter.OnClickListener {
-            override fun onItemClicked(position: Int, fromTab: String) {
+            override fun onItemClicked(position: Int) {
             }
 
 

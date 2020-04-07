@@ -87,12 +87,30 @@
         <action
             android:id="@+id/action_Event_ToDescription"
             app:destination="@id/EventDescriptionFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/EventDescriptionFragment"
         android:name="com.OnlineEvent.umangburman.event.DescriptionFragment.DescriptionFragment"
         tools:layout="@layout/description_fragment">
 
+        <action
+            android:id="@+id/action_Event_To_Speakers"
+            app:destination="@id/SpeakersFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SpeakersFragment"
+        android:name="com.OnlineEvent.umangburman.event.SpeakerFragment.SpeakerFragment"
+        tools:layout="@layout/speaker_fragment">
+
+        <action
+            android:id="@+id/action_Event_ToDescription"
+            app:destination="@id/EventDescriptionFragment" />
+        <action
+            android:id="@+id/action_Speaker_toSpeakerProfile"
+            app:destination="@id/SpeakerProfileFragment" />
 
     </fragment>
     <fragment
@@ -106,6 +124,12 @@
         android:id="@+id/ResetPasswordFragment"
         android:name="com.OnlineEvent.umangburman.event.ResetPasswordFragment.ResetPasswordFragment"
         tools:layout="@layout/reset_password_fragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/SpeakerProfileFragment"
+        android:name="com.OnlineEvent.umangburman.event.SpeakerFragment.SpeakerProfileFragment"
+        tools:layout="@layout/speaker_profile">
 
 
     </fragment>

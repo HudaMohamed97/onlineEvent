@@ -1,45 +1,38 @@
-package com.OnlineEvent.umangburman.event.HomeFragment
+package com.OnlineEvent.umangburman.event.AgendaFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.OnlineEvent.umangburman.event.Models.AboutModel
+import com.OnlineEvent.umangburman.event.Models.AgendaDaysModel
 import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
 import com.example.myapplication.Models.AccountModelData
 
 
-class HomeViewModel : ViewModel() {
-    private var repositoryHelper: HomeRepository = HomeRepository()
-    private lateinit var mutableLiveData: MutableLiveData<AboutModel>
+class AgendaViewModel : ViewModel() {
+    private var repositoryHelper: AgendaRepository = AgendaRepository()
+    private lateinit var mutableLiveData: MutableLiveData<AgendaDaysModel>
     private lateinit var homeMutableLiveData: MutableLiveData<HomeResponseModel>
     private lateinit var accountMutableLiveData: MutableLiveData<AccountModelData>
 
 
-    fun getAbout(auth: String) {
-        mutableLiveData = repositoryHelper.getAbout(auth)
+    fun getAgendaDays(eventdId:Int,auth: String) {
+        mutableLiveData = repositoryHelper.getAgendaDays(eventdId,auth)
 
     }
 
-    fun getAboutData(): MutableLiveData<AboutModel> {
+    fun getAgendaDaysData(): MutableLiveData<AgendaDaysModel> {
         return mutableLiveData
     }
 
-    fun getHomeData(auth: String) {
+   /* fun getHomeData(auth: String) {
         homeMutableLiveData = repositoryHelper.getHome(auth)
 
     }
 
     fun homeData(): MutableLiveData<HomeResponseModel> {
         return homeMutableLiveData
-    }
+    }*/
 
-    fun getMyAccountData(auth: String) {
-        accountMutableLiveData = repositoryHelper.getMyAccount(auth)
-
-    }
-
-    fun AaccountData(): MutableLiveData<AccountModelData> {
-        return accountMutableLiveData
-    }
 
 }
 

@@ -1,11 +1,9 @@
 package com.OnlineEvent.umangburman.event.NetworkLayer
 
-import com.OnlineEvent.umangburman.event.Models.AboutModel
+import com.OnlineEvent.umangburman.event.Models.*
 import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
-import com.OnlineEvent.umangburman.event.Models.LoginRequestModel
-import com.OnlineEvent.umangburman.event.Models.SchduleResponseData
-import com.OnlineEvent.umangburman.event.Models.SubmitModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
+import com.example.myapplication.Models.AccountModelData
 import com.example.myapplication.Models.ResponseModelData
 import retrofit2.Call
 import retrofit2.http.*
@@ -22,6 +20,9 @@ interface ApiServices {
     @GET("about")
     fun getAboutData(@Header("Authorization") authHeader: String): Call<AboutModel>
 
+    @GET("events/{event}")
+    fun getEventDescription(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<EventDescriptionModel>
+
     @GET("home")
     fun getHomeData(@Header("Authorization") authHeader: String): Call<HomeResponseModel>
 
@@ -31,8 +32,20 @@ interface ApiServices {
     @GET("events")
     fun getMyEvent(@Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
 
+    @GET("events/{event}/days")
+    fun getAagendaDays(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<AgendaDaysModel>
+
+    @GET("events/{event}/speakers")
+    fun getSpeakerEvent(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<SpeakerResponseModel>
+
+    @GET("speakers/{speaker}")
+    fun getSingelSpeakerEvent(@Path("speaker") event: Int, @Header("Authorization") authHeader: String): Call<SpeakerProfileModel>
+
     @GET("my-schedule")
     fun getMyScheduleByFilter(@QueryMap map: Map<String, String>, @Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
+
+    @GET("account/me")
+    fun getMyAaccount(@Header("Authorization") authHeader: String): Call<AccountModelData>
 
 
 }
