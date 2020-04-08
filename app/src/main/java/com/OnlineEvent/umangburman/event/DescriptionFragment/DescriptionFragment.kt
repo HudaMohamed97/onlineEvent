@@ -52,6 +52,11 @@ class DescriptionFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
         }
+        agenda_button.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("EventId", eventId)
+            NavHostFragment.findNavController(this).navigate(R.id.action_Speaker_AgendaFragment, bundle)
+        }
 
         backButton.setOnClickListener {
             (activity as MainActivity).showDrwer(true)

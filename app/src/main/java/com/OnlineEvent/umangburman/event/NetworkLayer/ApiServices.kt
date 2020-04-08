@@ -35,6 +35,9 @@ interface ApiServices {
     @GET("events/{event}/days")
     fun getAagendaDays(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<AgendaDaysModel>
 
+    @GET("days/{day}")
+    fun getAgenda(@Path("day") day: Int, @Header("Authorization") authHeader: String): Call<AgendaModelResponse>
+
     @GET("events/{event}/speakers")
     fun getSpeakerEvent(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<SpeakerResponseModel>
 

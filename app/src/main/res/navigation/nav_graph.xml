@@ -98,6 +98,10 @@
             android:id="@+id/action_Event_To_Speakers"
             app:destination="@id/SpeakersFragment" />
 
+        <action
+            android:id="@+id/action_Speaker_AgendaFragment"
+            app:destination="@id/AgendaFragment" />
+
     </fragment>
 
     <fragment
@@ -111,6 +115,9 @@
         <action
             android:id="@+id/action_Speaker_toSpeakerProfile"
             app:destination="@id/SpeakerProfileFragment" />
+        <action
+            android:id="@+id/action_Speaker_AgendaFragment"
+            app:destination="@id/AgendaFragment" />
 
     </fragment>
     <fragment
@@ -130,6 +137,14 @@
         android:id="@+id/SpeakerProfileFragment"
         android:name="com.OnlineEvent.umangburman.event.SpeakerFragment.SpeakerProfileFragment"
         tools:layout="@layout/speaker_profile">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/AgendaFragment"
+        android:name="com.OnlineEvent.umangburman.event.AgendaFragment.AgendaFragment"
+        tools:layout="@layout/agenda_fragment">
 
 
     </fragment>

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.OnlineEvent.umangburman.event.Models.AboutModel
 import com.OnlineEvent.umangburman.event.Models.AgendaDaysModel
+import com.OnlineEvent.umangburman.event.Models.AgendaModelResponse
 import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
 import com.example.myapplication.Models.AccountModelData
 
@@ -11,8 +12,7 @@ import com.example.myapplication.Models.AccountModelData
 class AgendaViewModel : ViewModel() {
     private var repositoryHelper: AgendaRepository = AgendaRepository()
     private lateinit var mutableLiveData: MutableLiveData<AgendaDaysModel>
-    private lateinit var homeMutableLiveData: MutableLiveData<HomeResponseModel>
-    private lateinit var accountMutableLiveData: MutableLiveData<AccountModelData>
+    private lateinit var agendaMutableLiveData: MutableLiveData<AgendaModelResponse>
 
 
     fun getAgendaDays(eventdId:Int,auth: String) {
@@ -23,15 +23,15 @@ class AgendaViewModel : ViewModel() {
     fun getAgendaDaysData(): MutableLiveData<AgendaDaysModel> {
         return mutableLiveData
     }
-
-   /* fun getHomeData(auth: String) {
-        homeMutableLiveData = repositoryHelper.getHome(auth)
+    fun getAgenda(day: Int, auth: String) {
+        agendaMutableLiveData = repositoryHelper.getAgenda(day, auth)
 
     }
 
-    fun homeData(): MutableLiveData<HomeResponseModel> {
-        return homeMutableLiveData
-    }*/
+    fun getAgendaData(): MutableLiveData<AgendaModelResponse> {
+        return agendaMutableLiveData
+    }
+
 
 
 }

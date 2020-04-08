@@ -18,8 +18,11 @@ import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
 import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.R
+import kotlinx.android.synthetic.main.description_fragment.*
 import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
 import kotlinx.android.synthetic.main.speaker_fragment.*
+import kotlinx.android.synthetic.main.speaker_fragment.agenda_button
+import kotlinx.android.synthetic.main.speaker_fragment.descriptionTab
 
 class SpeakerFragment : Fragment() {
     private lateinit var root: View
@@ -49,6 +52,12 @@ class SpeakerFragment : Fragment() {
 
     private fun setClickListeners() {
         modelFeedArrayList.clear()
+        agenda_button.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("EventId", eventId)
+            NavHostFragment.findNavController(this).navigate(R.id.action_Speaker_AgendaFragment, bundle)
+        }
+
         descriptionTab.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt("EventId", eventId)
