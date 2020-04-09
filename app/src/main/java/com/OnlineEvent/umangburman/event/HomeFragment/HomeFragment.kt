@@ -3,8 +3,11 @@ package com.OnlineEvent.umangburman.event.HomeFragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +22,6 @@ import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.first_fragment.*
-import android.media.MediaMetadataRetriever
-import android.os.Build
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 
 
 class HomeFragment : Fragment() {
@@ -34,10 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var loginPreferences: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        /* (activity as MainActivity).setDrawerLocked(false)
-         (activity as MainActivity).showItem("second")*/
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-
         return if (root != null) {
             fromBack = true
             root
@@ -60,6 +55,38 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
+        videoView.start()
+        val duration = 81200000 //6 hours
+        object : CountDownTimer(duration.toLong(), 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                var millisUntilFinished = millisUntilFinished
+                val secondsInMilli: Long = 1000
+                val minutesInMilli = secondsInMilli * 60
+                val hoursInMilli = minutesInMilli * 60
+
+                val elapsedHours = millisUntilFinished / hoursInMilli
+                millisUntilFinished %= hoursInMilli
+
+                val elapsedMinutes = millisUntilFinished / minutesInMilli
+                millisUntilFinished %= minutesInMilli
+
+                val elapsedSeconds = millisUntilFinished / secondsInMilli
+
+                val yy = String.format("%02d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds)
+                if (time != null) {
+                    time.text = "Time Remaining : " + yy
+                }
+            }
+
+            override fun onFinish() {
+                if (time != null) {
+                    time.text = "Time Remaining : " + "00:00:00"
+                }
+            }
+        }.start()
+
+
         val mediaController = MediaController(activity)
         mediaController.setAnchorView(videoView)
         videoView.setZOrderOnTop(true)
@@ -125,8 +152,8 @@ class HomeFragment : Fragment() {
                 mainLayout.visibility = View.VISIBLE
                 videoProgressBar.visibility = View.VISIBLE
                 //loadVideo(it.video)
-              //  loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
-                loadVideo(it.video)
+                loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
+                // loadVideo(it.video)
                 val imageList = arrayListOf<String>()
                 val videoList = arrayListOf<String>()
                 for (image in it.sliders) {
@@ -156,8 +183,8 @@ class HomeFragment : Fragment() {
                 imagesView.isClickable = true
                 imagesView.id = 0
                 Glide.with(context!!).load(image).centerCrop()
-                        .placeholder(R.drawable.ic_save_black_24dp)
-                        .error(R.drawable.ic_save_black_24dp).into(imagesView)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background).into(imagesView)
 
                 // imagesView.setBackgroundResource(res)
                 flipper.addView(imagesView)
@@ -167,8 +194,8 @@ class HomeFragment : Fragment() {
                 imagesView.isClickable = true
                 imagesView.id = 1
                 Glide.with(context!!).load(image).centerCrop()
-                        .placeholder(R.drawable.ic_save_black_24dp)
-                        .error(R.drawable.ic_save_black_24dp).into(imagesView)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background).into(imagesView)
                 flipper.addView(imagesView)
                 count++
             }
@@ -176,16 +203,16 @@ class HomeFragment : Fragment() {
         for (video in videoList) {
             video_view = VideoView(this.context)
             val uri = Uri.parse("https://www.demonuts.com/Demonuts/smallvideo.mp4")
-            var bitmap = retriveVideoFrameFromVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
+            /*var bitmap = retriveVideoFrameFromVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
             if (bitmap != null) {
-                bitmap = Bitmap.createScaledBitmap(bitmap, 240, 240, false)
-            }
+                bitmap = Bitmap.createScaledBitmap(R.mipmap.video_img, 240, 240, false)
+            }*/
             video_view.setZOrderOnTop(true)
 
             //video_view.setZOrderMediaOverlay(true)
             video_view.setVideoURI(uri)
-            var ob: Drawable = BitmapDrawable(resources, bitmap)
-            video_view.background = ob
+            //var ob: Drawable = BitmapDrawable(resources,R.mipmap.video_img)
+            video_view.setBackgroundResource(R.mipmap.video_img)
             flipper.addView(video_view)
             video_view.setOnPreparedListener {
                 it.isLooping = true
@@ -207,10 +234,7 @@ class HomeFragment : Fragment() {
         var mediaMetadataRetriever: MediaMetadataRetriever? = null
         try {
             mediaMetadataRetriever = MediaMetadataRetriever()
-            if (Build.VERSION.SDK_INT >= 14)
-                mediaMetadataRetriever.setDataSource(videoPath, HashMap())
-            else
-                mediaMetadataRetriever.setDataSource(videoPath)
+            mediaMetadataRetriever.setDataSource(videoPath)
 
             bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
         } catch (e: Exception) {

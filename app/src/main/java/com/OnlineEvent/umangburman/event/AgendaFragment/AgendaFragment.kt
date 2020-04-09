@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.agenda_fragment.*
 import kotlinx.android.synthetic.main.speaker_fragment.descriptionTab
 
 class AgendaFragment : Fragment() {
-    private lateinit var root: View
+    private var root: View? = null
     private var eventId = 0
     private lateinit var agendaViewModel: AgendaViewModel
     private lateinit var loginPreferences: SharedPreferences
@@ -35,11 +35,15 @@ class AgendaFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        /* (activity as MainActivity).setDrawerLocked(false)
-         (activity as MainActivity).showItem("second")*/
         agendaViewModel = ViewModelProviders.of(this).get(AgendaViewModel::class.java)
-        root = inflater.inflate(R.layout.agenda_fragment, container, false)
-        return root
+        return if (root != null) {
+            NavHostFragment.findNavController(this).navigateUp()
+            root
+        } else {
+            root = inflater.inflate(R.layout.agenda_fragment, container, false)
+            root
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,7 +86,7 @@ class AgendaFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
         }
-        recyclerView = root.findViewById(R.id.agendaRecycler)
+        recyclerView = root!!.findViewById(R.id.agendaRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
     }
 

@@ -144,11 +144,10 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:text="Network"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -194,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_10"
                     android:background="@drawable/background_edittext"
-                    android:minHeight="300dp">
+                    android:minHeight="400dp">
 
                     <ProgressBar
                         android:id="@+id/speakerProfileProgressBar"
@@ -206,10 +205,10 @@
                         android:indeterminateTint="@color/app_color_pink"
                         android:indeterminateTintMode="src_atop"
                         android:visibility="gone"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:visibility="visible" />
 
                     <LinearLayout
@@ -256,44 +255,44 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/space_10"
                             android:layout_marginTop="@dimen/space_10"
-                            tools:text="DR: Huda Mohaemd"
                             android:textColor="@color/app_color_pink"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toRightOf="@+id/imgProfileLayout"
-                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout" />
+                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout"
+                            tools:text="DR: Huda Mohaemd" />
 
                         <TextView
                             android:id="@+id/speaker_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/space_10"
-                            tools:text="DR: Huda Mohaemd"
                             android:textColor="@color/app_color_pink"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toRightOf="@+id/imgProfileLayout"
-                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout" />
+                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout"
+                            tools:text="DR: Huda Mohaemd" />
 
                         <TextView
                             android:id="@+id/speaker_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/space_10"
-                            tools:text="DR: Huda Mohaemd"
                             android:textColor="@color/app_color_pink"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toRightOf="@+id/imgProfileLayout"
-                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout" />
+                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout"
+                            tools:text="DR: Huda Mohaemd" />
 
                         <TextView
                             android:id="@+id/speaker_mail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/space_10"
-                            tools:text="DR: Huda Mohaemd"
                             android:textColor="@color/app_color_pink"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toRightOf="@+id/imgProfileLayout"
-                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout" />
+                            app:layout_constraintTop_toTopOf="@+id/imgProfileLayout"
+                            tools:text="DR: Huda Mohaemd" />
 
 
                     </LinearLayout>

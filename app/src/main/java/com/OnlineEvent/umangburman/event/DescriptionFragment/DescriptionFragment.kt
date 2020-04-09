@@ -14,27 +14,26 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
-import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import kotlinx.android.synthetic.main.description_fragment.*
-import kotlinx.android.synthetic.main.first_fragment.backButton
-import kotlinx.android.synthetic.main.schdule_fragment.*
 
 
 class DescriptionFragment : Fragment() {
-    private lateinit var root: View
+    private var root: View? = null
     private lateinit var learnMoreViewModel: LearnMoreViewModel
     private lateinit var loginPreferences: SharedPreferences
     private var eventId: Int = 0
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       /* (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")*/
         learnMoreViewModel = ViewModelProviders.of(this).get(LearnMoreViewModel::class.java)
-        root = inflater.inflate(R.layout.description_fragment, container, false)
-        return root
+        return if (root != null) {
+            NavHostFragment.findNavController(this).navigateUp()
+            root
+        } else {
+            root = inflater.inflate(R.layout.description_fragment, container, false)
+            root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,7 +58,8 @@ class DescriptionFragment : Fragment() {
         }
 
         backButton.setOnClickListener {
-            //(activity as MainActivity).showDrwer(true)
+            NavHostFragment.findNavController(this).navigateUp()
+
         }
 
     }
