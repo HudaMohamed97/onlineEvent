@@ -31,7 +31,7 @@ class AccountFragment : Fragment(), LoginInterface {
             savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.my_account, container, false)
-        (activity as MainActivity).setDrawerLocked(true)
+        //(activity as MainActivity).setDrawerLocked(true)
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         return root
     }

@@ -44,6 +44,9 @@ interface ApiServices {
     @GET("speakers/{speaker}")
     fun getSingelSpeakerEvent(@Path("speaker") event: Int, @Header("Authorization") authHeader: String): Call<SpeakerProfileModel>
 
+    @GET("speakers")
+    fun getSpeakers(@Header("Authorization") authHeader: String): Call<SpeakersResponseModel>
+
     @GET("my-schedule")
     fun getMyScheduleByFilter(@QueryMap map: Map<String, String>, @Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
 

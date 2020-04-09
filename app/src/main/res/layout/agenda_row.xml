@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/transparent">
 
     <LinearLayout
@@ -65,10 +66,9 @@
                 android:id="@+id/sessionTopic"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/space_5"
                 android:layout_weight="1"
-                android:text="Sesion Topic"
+                tools:text="Sesion Topic"
                 android:textColor="@color/app_color_pink" />
 
             <View
@@ -80,7 +80,6 @@
                 android:id="@+id/speakersAgenda"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_margin="@dimen/space_10"
                 android:layout_weight="1"
                 android:text=""

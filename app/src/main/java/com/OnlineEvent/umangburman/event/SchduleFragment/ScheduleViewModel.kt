@@ -2,12 +2,15 @@ package com.OnlineEvent.umangburman.event.SchduleFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.OnlineEvent.umangburman.event.Models.SpeakersResponseModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 
 class ScheduleViewModel : ViewModel() {
     private var repositoryHelper: ScheduleRepository = ScheduleRepository()
     private lateinit var mutableLiveData: MutableLiveData<ScheduleResponseModel>
     private lateinit var filteredLiveData: MutableLiveData<ScheduleResponseModel>
+    private lateinit var speakerLiveData: MutableLiveData<SpeakersResponseModel>
+
 
     fun getSchedulesData(currentPageNum: Int, accessToken: String) {
         mutableLiveData = repositoryHelper.getSchedules(currentPageNum, accessToken)
@@ -26,5 +29,15 @@ class ScheduleViewModel : ViewModel() {
     fun getFilteredData(): MutableLiveData<ScheduleResponseModel> {
         return filteredLiveData
     }
+
+    fun getSpeakers(accessToken: String) {
+        speakerLiveData = repositoryHelper.getSpeakers(accessToken)
+
+    }
+
+    fun getSpeakerData(): MutableLiveData<SpeakersResponseModel> {
+        return speakerLiveData
+    }
+
 
 }

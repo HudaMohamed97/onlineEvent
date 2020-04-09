@@ -38,7 +38,7 @@ class ResetPasswordFragment : Fragment(), LoginInterface {
             savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.reset_password_fragment, container, false)
-        (activity as MainActivity).setDrawerLocked(true)
+       // (activity as MainActivity).setDrawerLocked(true)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         return root
     }

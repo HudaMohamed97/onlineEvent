@@ -10,9 +10,7 @@
         android:name="com.OnlineEvent.umangburman.event.HomeFragment.HomeFragment"
         android:label="First Fragment"
         tools:layout="@layout/first_fragment">
-        <action
-            android:id="@+id/action_Home_to_third"
-            app:destination="@id/HomeFragment" />
+
         <action
             android:id="@+id/action_Home_to_About"
             app:destination="@id/AboutFragment" />
@@ -70,12 +68,32 @@
         android:name="com.OnlineEvent.umangburman.event.AboutFragment.AboutFragment"
         tools:layout="@layout/about_fragment">
 
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
+
 
     </fragment>
     <fragment
         android:id="@+id/SchduleFragment"
         android:name="com.OnlineEvent.umangburman.event.SchduleFragment.ScheduleFragment"
         tools:layout="@layout/schdule_fragment">
+
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
 
 
     </fragment>
@@ -87,6 +105,17 @@
         <action
             android:id="@+id/action_Event_ToDescription"
             app:destination="@id/EventDescriptionFragment" />
+
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
 
     </fragment>
     <fragment
@@ -124,6 +153,18 @@
         android:id="@+id/AccountFragment"
         android:name="com.OnlineEvent.umangburman.event.AccountFragment.AccountFragment"
         tools:layout="@layout/my_account">
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
 
 
     </fragment>
@@ -146,7 +187,13 @@
         android:name="com.OnlineEvent.umangburman.event.AgendaFragment.AgendaFragment"
         tools:layout="@layout/agenda_fragment">
 
+        <action
+            android:id="@+id/action_Event_ToDescription"
+            app:destination="@id/EventDescriptionFragment" />
 
+        <action
+            android:id="@+id/action_Event_To_Speakers"
+            app:destination="@id/SpeakersFragment" />
     </fragment>
     <activity
         android:id="@+id/secondActivity"

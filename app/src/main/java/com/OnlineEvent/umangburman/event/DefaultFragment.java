@@ -26,7 +26,7 @@ public class DefaultFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setDrawerLocked(true);
+        //((MainActivity) getActivity()).setDrawerLocked(true);
         //  ((MainActivity) getActivity()).hideToolbar(true);
         root = inflater.inflate(R.layout.default_fragment, container, false);
         return root;
@@ -56,9 +56,9 @@ public class DefaultFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        ((MainActivity) getActivity()).showDrwer(true);
+       /* ((MainActivity) getActivity()).showDrwer(true);
         ((MainActivity) getActivity()).setDrawerLocked(false);
-        ((MainActivity) getActivity()).showItem("second");
+        ((MainActivity) getActivity()).showItem("second");*/
         // ((MainActivity) getActivity()).hideToolbar(false);
 
         super.onDestroy();

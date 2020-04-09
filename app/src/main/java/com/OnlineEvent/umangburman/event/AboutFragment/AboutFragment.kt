@@ -12,11 +12,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.HomeFragment.HomeViewModel
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import kotlinx.android.synthetic.main.about_fragment.*
-import kotlinx.android.synthetic.main.first_fragment.backButton
+import kotlinx.android.synthetic.main.about_fragment.back
+import kotlinx.android.synthetic.main.about_fragment.backButton
+import kotlinx.android.synthetic.main.about_fragment.imgProfile
+import kotlinx.android.synthetic.main.about_fragment.myevent_button
+import kotlinx.android.synthetic.main.about_fragment.schedule_button
+import kotlinx.android.synthetic.main.first_fragment.*
 
 
 class AboutFragment : Fragment() {
@@ -25,8 +30,6 @@ class AboutFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         return inflater.inflate(R.layout.about_fragment, container, false)
     }
@@ -34,10 +37,29 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-        backButton.setOnClickListener {
-            (activity as MainActivity).showDrwer(true)
-        }
+        setClickListener()
         callAboutData()
+    }
+
+    private fun setClickListener() {
+        back.setOnClickListener {
+            activity?.finish()
+        }
+        backButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
+
     }
 
     private fun callAboutData() {

@@ -13,16 +13,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
-import com.OnlineEvent.umangburman.event.MainActivity
+import com.OnlineEvent.umangburman.event.Models.DataSpeaker
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner
 import kotlinx.android.synthetic.main.first_fragment.backButton
 import kotlinx.android.synthetic.main.schdule_fragment.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.schdule_fragment.imgProfile
+import kotlinx.android.synthetic.main.schdule_fragment.myevent_button
+import java.util.*
 
 
 class ScheduleFragment : Fragment() {
@@ -39,11 +42,13 @@ class ScheduleFragment : Fragment() {
     private var month: String = ""
     private var speakerId: Int = -1
     private var topic: String = ""
+    private val speakersNameList = arrayListOf<String>()
+    private val speakerList = arrayListOf<DataSpeaker>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
+        /* (activity as MainActivity).setDrawerLocked(false)
+         (activity as MainActivity).showItem("second")*/
         scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
         root = inflater.inflate(R.layout.schdule_fragment, container, false)
         return root
@@ -55,6 +60,7 @@ class ScheduleFragment : Fragment() {
         callScheduleData(1, false)
         initRecyclerView()
         initializeMonthSpinner()
+        callSpeakersData()
     }
 
     private fun setClickListeners() {
@@ -63,8 +69,8 @@ class ScheduleFragment : Fragment() {
         topic = ""
         recyclerView = root.findViewById(R.id.scheduleRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-        backButton.setOnClickListener {
-            (activity as MainActivity).showDrwer(true)
+        back.setOnClickListener {
+            activity!!.finish()
         }
         filterScheduleButton.setOnClickListener {
             topic = filterTopic.text.toString()
@@ -78,6 +84,20 @@ class ScheduleFragment : Fragment() {
                 Toast.makeText(activity, "please Choose filter Type", Toast.LENGTH_SHORT).show()
 
             }
+        }
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
+        backButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
         }
 
 
@@ -154,6 +174,33 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+    private fun callSpeakersData() {
+        val accessToken = loginPreferences.getString("accessToken", "")
+        if (accessToken != null) {
+            scheduleViewModel.getSpeakers(accessToken)
+        }
+        scheduleViewModel.getSpeakerData().observe(this, Observer {
+            if (it != null) {
+                lastPageNum = it.meta.last_page
+                currentPageNum = it.meta.current_page
+                for (data in it.data) {
+                    speakerList.add(data)
+                }
+                prepareSpeakerList(speakerList)
+            } else {
+                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun prepareSpeakerList(list: ArrayList<DataSpeaker>) {
+        speakersNameList.clear()
+        for (speaker in list) {
+            speakersNameList.add(speaker.name)
+        }
+        initializeSpeakerSpinner(speakersSpinner, speakersNameList)
+    }
+
     private fun callScheduleDataByFilter(filterTopic: String, month: String, speaker: Int, pageNum: Int, fromLoadMore: Boolean) {
         scheduleProgressBar.visibility = View.VISIBLE
         val accessToken = loginPreferences.getString("accessToken", "")
@@ -181,6 +228,42 @@ class ScheduleFragment : Fragment() {
         })
     }
 
+    private fun initializeSpeakerSpinner(
+            speakerSpinner: SearchableSpinner,
+            speakersNameList: ArrayList<String>
+    ) {
+        val arrayAdapter =
+                context?.let {
+                    ArrayAdapter(
+                            it,
+                            R.layout.support_simple_spinner_dropdown_item,
+                            speakersNameList
+                    )
+                }
+
+        speakerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                    parentView: AdapterView<*>,
+                    selectedItemView: View,
+                    position: Int,
+                    id: Long
+            ) {
+                speakerId = speakerList[position].id
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>) {
+                // your code here
+            }
+
+
+        }
+        arrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        if (arrayAdapter != null) {
+            speakerSpinner.adapter = arrayAdapter
+        }
+
+    }
+
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         scheduleAdapter = ScheduleAdapter(modelFeedArrayList)
@@ -199,7 +282,7 @@ class ScheduleFragment : Fragment() {
                 if (!recyclerView.canScrollVertically(1) && !mHasReachedBottomOnce) {
                     mHasReachedBottomOnce = true
                     if (currentPageNum <= lastPageNum) {
-                        callScheduleData(currentPageNum, true)
+                        // callScheduleData(currentPageNum, true)
 
                     }
                 }

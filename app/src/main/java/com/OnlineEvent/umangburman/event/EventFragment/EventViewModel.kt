@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.Models.SpeakerProfileModel
 import com.OnlineEvent.umangburman.event.Models.SpeakerResponseModel
+import com.OnlineEvent.umangburman.event.Models.SpeakersResponseModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.OnlineEvent.umangburman.event.SchduleFragment.ScheduleRepository
 
@@ -40,6 +41,5 @@ class EventViewModel : ViewModel() {
     fun getSingelSpeakerData(): MutableLiveData<SpeakerProfileModel> {
         return singelSpeakerLiveData
     }
-
 
 }

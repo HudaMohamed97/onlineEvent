@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.Models.SpeakerProfileModel
 import com.OnlineEvent.umangburman.event.Models.SpeakerResponseModel
+import com.OnlineEvent.umangburman.event.Models.SpeakersResponseModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
 import retrofit2.Call
@@ -76,6 +77,28 @@ class ScheduleRepository {
         return userData
     }
 
+    fun getSpeakers(accessToken: String): MutableLiveData<SpeakersResponseModel> {
+        val userData = MutableLiveData<SpeakersResponseModel>()
+        Webservice.getInstance().api.getSpeakers(accessToken)
+                .enqueue(object : Callback<SpeakersResponseModel> {
+                    override fun onResponse(
+                            call: Call<SpeakersResponseModel>, response: Response<SpeakersResponseModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            userData.value = response.body()
+                        } else {
+                            userData.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SpeakersResponseModel>, t: Throwable) {
+                        userData.value = null
+                    }
+                })
+        return userData
+    }
+
+
     fun getSingleSpeakerSpeakers(speakerId: Int, accessToken: String): MutableLiveData<SpeakerProfileModel> {
         val userData = MutableLiveData<SpeakerProfileModel>()
         Webservice.getInstance().api.getSingelSpeakerEvent(speakerId, accessToken)
@@ -96,6 +119,7 @@ class ScheduleRepository {
                 })
         return userData
     }
+
 
     fun getSchedulesFiltered(month: String, speaker: Int, topic: String, currentPageNum: Int, accessToken: String): MutableLiveData<ScheduleResponseModel> {
         filtersCondition(month, speaker, topic)

@@ -16,7 +16,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.AgendaAdapter
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.Models.AgendaDaysData
 import com.OnlineEvent.umangburman.event.Models.Talks
 import com.OnlineEvent.umangburman.event.R
@@ -36,8 +35,8 @@ class AgendaFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
+        /* (activity as MainActivity).setDrawerLocked(false)
+         (activity as MainActivity).showItem("second")*/
         agendaViewModel = ViewModelProviders.of(this).get(AgendaViewModel::class.java)
         root = inflater.inflate(R.layout.agenda_fragment, container, false)
         return root
@@ -77,6 +76,11 @@ class AgendaFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_ToDescription, bundle)
 
+        }
+        speakersTab.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("EventId", eventId)
+            NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
         }
         recyclerView = root.findViewById(R.id.agendaRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
@@ -125,7 +129,7 @@ class AgendaFragment : Fragment() {
 
     private fun intializeDaysSpinner() {
         for (i in 0 until (modelFeedArrayList.size)) {
-            listDays.add(i+1)
+            listDays.add(i + 1)
         }
         val arrayAdapter =
                 context?.let {

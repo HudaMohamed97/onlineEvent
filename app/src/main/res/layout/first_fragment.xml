@@ -89,6 +89,7 @@
                     android:layout_margin="10dp"
                     android:text="LogOut"
                     android:textColor="@color/black"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -101,7 +102,7 @@
                 android:layout_height="@dimen/space_50"
                 android:background="@color/app_color_pink"
                 android:orientation="horizontal"
-                android:weightSum="4"
+                android:weightSum="3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header">
@@ -146,7 +147,8 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:text="Network"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <ProgressBar
@@ -201,8 +203,8 @@
                         android:layout_height="200dp"
                         android:layout_marginTop="@dimen/space_5"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                     </ViewFlipper>
@@ -223,10 +225,20 @@
                     android:id="@+id/background"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:background="@mipmap/background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flipperLayout">
+
+
+                    <ImageView
+                        android:id="@+id/background_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_login"

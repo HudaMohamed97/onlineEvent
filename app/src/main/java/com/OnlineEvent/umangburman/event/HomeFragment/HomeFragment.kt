@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.first_fragment.*
@@ -35,8 +34,8 @@ class HomeFragment : Fragment() {
     private lateinit var loginPreferences: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
+        /* (activity as MainActivity).setDrawerLocked(false)
+         (activity as MainActivity).showItem("second")*/
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         return if (root != null) {
@@ -61,9 +60,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
-        backButton.setOnClickListener {
-            (activity as MainActivity).showDrwer(true)
-        }
         val mediaController = MediaController(activity)
         mediaController.setAnchorView(videoView)
         videoView.setZOrderOnTop(true)
@@ -89,7 +85,8 @@ class HomeFragment : Fragment() {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
         }
         back.setOnClickListener {
-            NavHostFragment.findNavController(this).navigateUp()
+            activity?.finish()
+
         }
     }
 
@@ -99,7 +96,6 @@ class HomeFragment : Fragment() {
                 .placeholder(R.drawable.profile)
                 .error(R.drawable.profile).into(imgProfile)
     }
-
 
     private fun loadVideo(uri: String) {
         val uriPath = uri
@@ -129,7 +125,8 @@ class HomeFragment : Fragment() {
                 mainLayout.visibility = View.VISIBLE
                 videoProgressBar.visibility = View.VISIBLE
                 //loadVideo(it.video)
-                loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
+              //  loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
+                loadVideo(it.video)
                 val imageList = arrayListOf<String>()
                 val videoList = arrayListOf<String>()
                 for (image in it.sliders) {
@@ -139,7 +136,6 @@ class HomeFragment : Fragment() {
                         videoList.add(image.video_url)
                     }
                 }
-
                 setFlipperImage(imageList, videoList)
                 Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 

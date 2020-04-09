@@ -30,8 +30,8 @@ class DescriptionFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
+       /* (activity as MainActivity).setDrawerLocked(false)
+        (activity as MainActivity).showItem("second")*/
         learnMoreViewModel = ViewModelProviders.of(this).get(LearnMoreViewModel::class.java)
         root = inflater.inflate(R.layout.description_fragment, container, false)
         return root
@@ -59,7 +59,7 @@ class DescriptionFragment : Fragment() {
         }
 
         backButton.setOnClickListener {
-            (activity as MainActivity).showDrwer(true)
+            //(activity as MainActivity).showDrwer(true)
         }
 
     }

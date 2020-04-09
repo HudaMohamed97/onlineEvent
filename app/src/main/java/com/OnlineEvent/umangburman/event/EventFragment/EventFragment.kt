@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,14 +15,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner
-import kotlinx.android.synthetic.main.first_fragment.backButton
-import kotlinx.android.synthetic.main.schdule_fragment.*
-import kotlinx.android.synthetic.main.schedule_row_list.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.event_fragment.*
+import kotlinx.android.synthetic.main.event_fragment.about_button
+import kotlinx.android.synthetic.main.event_fragment.back
+import kotlinx.android.synthetic.main.event_fragment.backButton
+import kotlinx.android.synthetic.main.event_fragment.imgProfile
+import kotlinx.android.synthetic.main.event_fragment.scheduleProgressBar
 
 
 class EventFragment : Fragment() {
@@ -36,13 +34,10 @@ class EventFragment : Fragment() {
     private lateinit var scheduleAdapter: ScheduleAdapter
     var mHasReachedBottomOnce = false
     var currentPageNum = 1
-    private val monthList = arrayListOf<String>()
     var lastPageNum: Int = 0
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel::class.java)
         root = inflater.inflate(R.layout.event_fragment, container, false)
         return root
@@ -60,8 +55,24 @@ class EventFragment : Fragment() {
         recyclerView = root.findViewById(R.id.scheduleRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         backButton.setOnClickListener {
-            (activity as MainActivity).showDrwer(true)
+            NavHostFragment.findNavController(this).navigateUp()
+
         }
+        back.setOnClickListener {
+            activity!!.finish()
+        }
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
+
     }
 
 

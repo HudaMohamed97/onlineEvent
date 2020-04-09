@@ -35,8 +35,8 @@ class SpeakerFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        (activity as MainActivity).setDrawerLocked(false)
-        (activity as MainActivity).showItem("second")
+       /* (activity as MainActivity).setDrawerLocked(false)
+        (activity as MainActivity).showItem("second")*/
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel::class.java)
         root = inflater.inflate(R.layout.speaker_fragment, container, false)
         return root
