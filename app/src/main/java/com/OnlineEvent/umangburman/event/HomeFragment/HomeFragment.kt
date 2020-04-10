@@ -8,6 +8,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class HomeFragment : Fragment() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         if (!fromBack) {
             callHomeData()
+            setCounter()
         }
         setListeners()
         setProfileImage()
@@ -56,37 +58,6 @@ class HomeFragment : Fragment() {
 
     private fun setListeners() {
         videoView.start()
-        val duration = 81200000 //6 hours
-        object : CountDownTimer(duration.toLong(), 1000) {
-
-            override fun onTick(millisUntilFinished: Long) {
-                var millisUntilFinished = millisUntilFinished
-                val secondsInMilli: Long = 1000
-                val minutesInMilli = secondsInMilli * 60
-                val hoursInMilli = minutesInMilli * 60
-
-                val elapsedHours = millisUntilFinished / hoursInMilli
-                millisUntilFinished %= hoursInMilli
-
-                val elapsedMinutes = millisUntilFinished / minutesInMilli
-                millisUntilFinished %= minutesInMilli
-
-                val elapsedSeconds = millisUntilFinished / secondsInMilli
-
-                val yy = String.format("%02d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds)
-                if (time != null) {
-                    time.text = "Time Remaining : " + yy
-                }
-            }
-
-            override fun onFinish() {
-                if (time != null) {
-                    time.text = "Time Remaining : " + "00:00:00"
-                }
-            }
-        }.start()
-
-
         val mediaController = MediaController(activity)
         mediaController.setAnchorView(videoView)
         videoView.setZOrderOnTop(true)
@@ -115,6 +86,38 @@ class HomeFragment : Fragment() {
             activity?.finish()
 
         }
+    }
+
+    private fun setCounter() {
+        val duration = 81200000 //6 hours
+        object : CountDownTimer(duration.toLong(), 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var millisUntilFinished = millisUntilFinished
+                val secondsInMilli: Long = 1000
+                val minutesInMilli = secondsInMilli * 60
+                val hoursInMilli = minutesInMilli * 60
+
+                val elapsedHours = millisUntilFinished / hoursInMilli
+                millisUntilFinished %= hoursInMilli
+
+                val elapsedMinutes = millisUntilFinished / minutesInMilli
+                millisUntilFinished %= minutesInMilli
+
+                val elapsedSeconds = millisUntilFinished / secondsInMilli
+
+                val yy = String.format("%02d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds)
+                Log.i("hhhhh", "timer sha8alll" + yy)
+                if (time != null) {
+                    time.text = "Time Remaining : " + yy
+                }
+            }
+
+            override fun onFinish() {
+                if (time != null) {
+                    time.text = "Time Remaining : " + "00:00:00"
+                }
+            }
+        }.start()
     }
 
     private fun setProfileImage() {
