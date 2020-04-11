@@ -11,7 +11,7 @@ data class DescriptionData(
         @SerializedName("start_date") val start_date: String,
         @SerializedName("end_date") val end_date: String,
         @SerializedName("city") val city: String,
-        @SerializedName("address") val address: Int,
+        @SerializedName("address") val address: String,
         @SerializedName("lat") val lat: Int,
         @SerializedName("lng") val lng: Int,
         @SerializedName("photo") val photo: String)

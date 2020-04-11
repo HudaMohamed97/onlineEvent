@@ -5,6 +5,8 @@ import com.OnlineEvent.umangburman.event.Models.HomeModels.HomeResponseModel
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.example.myapplication.Models.AccountModelData
 import com.example.myapplication.Models.ResponseModelData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -51,7 +53,15 @@ interface ApiServices {
     fun getMyScheduleByFilter(@QueryMap map: Map<String, String>, @Query("page") page: Int, @Header("Authorization") authHeader: String): Call<ScheduleResponseModel>
 
     @GET("account/me")
-    fun getMyAaccount(@Header("Authorization") authHeader: String): Call<AccountModelData>
+    fun getMyAccount(@Header("Authorization") authHeader: String): Call<AccountModelData>
+
+    @Multipart
+    @POST("account/update")
+    fun updateAccount(
+            @Part("email") email: RequestBody, @Part("name") name: RequestBody
+            , @Part("bio") bio: RequestBody, @Part image: MultipartBody.Part,
+            @Header("Authorization") authHeader: String
+    ): Call<AccountModelData>
 
 
 }

@@ -57,7 +57,7 @@ class HomeRepository {
 
     fun getMyAccount(auth: String): MutableLiveData<AccountModelData> {
         val data = MutableLiveData<AccountModelData>()
-        Webservice.getInstance().api.getMyAaccount(auth)
+        Webservice.getInstance().api.getMyAccount(auth)
                 .enqueue(object : Callback<AccountModelData> {
                     override fun onResponse(
                             call: Call<AccountModelData>,

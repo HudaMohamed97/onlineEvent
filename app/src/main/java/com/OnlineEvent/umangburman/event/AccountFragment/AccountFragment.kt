@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.HomeFragment.HomeViewModel
 import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
@@ -31,7 +32,6 @@ class AccountFragment : Fragment(), LoginInterface {
             savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.my_account, container, false)
-        //(activity as MainActivity).setDrawerLocked(true)
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         return root
     }
@@ -45,6 +45,10 @@ class AccountFragment : Fragment(), LoginInterface {
 
     override fun setClickListeners() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", MODE_PRIVATE)
+        editButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Account_to_editAccount)
+
+        }
     }
 
     private fun setProfileImage() {

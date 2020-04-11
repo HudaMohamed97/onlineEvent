@@ -165,6 +165,9 @@
         <action
             android:id="@+id/action_Home_to_muyAccount"
             app:destination="@id/AccountFragment" />
+        <action
+            android:id="@+id/action_Account_to_editAccount"
+            app:destination="@id/EditFragment" />
 
 
     </fragment>
@@ -194,6 +197,15 @@
         <action
             android:id="@+id/action_Event_To_Speakers"
             app:destination="@id/SpeakersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EditFragment"
+        android:name="com.OnlineEvent.umangburman.event.EditAccount.EditFragment"
+        tools:layout="@layout/edit_account">
+
+        <!-- <action
+             android:id="@+id/action_Event_To_Speakers"
+             app:destination="@id/SpeakersFragment" />-->
     </fragment>
     <activity
         android:id="@+id/secondActivity"

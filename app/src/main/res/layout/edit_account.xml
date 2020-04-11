@@ -92,7 +92,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/logout_icon" />
+                    app:srcCompat="@mipmap/back_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -144,9 +144,9 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:text="Network"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
             </LinearLayout>
 
 
@@ -268,8 +268,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginEnd="@dimen/space_20"
+                            android:background="@drawable/pink_background_edittext"
+                            android:backgroundTint="@color/app_color_pink"
                             android:clickable="true"
-                            android:background="@drawable/background_edittext"
                             android:elevation="5dp"
                             android:focusable="true"
                             android:scaleType="centerCrop"
@@ -279,7 +280,8 @@
                             android:textSize="@dimen/space_8"
                             android:visibility="visible" />
 
-                        <TextView
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:id="@+id/photo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -287,8 +289,29 @@
                             android:layout_marginBottom="@dimen/space_10"
                             android:background="@drawable/background_edittext"
                             android:hint="choose Photo"
-                            android:padding="@dimen/space_10"
-                            android:textColor="@color/app_color_pink" />
+                            android:padding="@dimen/space_12"
+                            android:textColor="@color/app_color_pink">
+
+                            <TextView
+                                android:id="@id/text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="choose Photo"
+                                android:textColor="@color/app_color_pink" />
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/imageProfile"
+                                android:layout_margin="@dimen/space_10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </ImageView>
+
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
                 </RelativeLayout>

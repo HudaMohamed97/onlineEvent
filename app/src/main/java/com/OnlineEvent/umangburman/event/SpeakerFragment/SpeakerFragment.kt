@@ -82,7 +82,7 @@ class SpeakerFragment : Fragment() {
                     modelFeedArrayList.add(data)
                 }
                 if (modelFeedArrayList.size == 0) {
-                    Toast.makeText(activity, "No Events Added Yet.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "No Speakers Added Yet.", Toast.LENGTH_SHORT).show()
                 }
                 speakerAdapter.notifyDataSetChanged()
             } else {

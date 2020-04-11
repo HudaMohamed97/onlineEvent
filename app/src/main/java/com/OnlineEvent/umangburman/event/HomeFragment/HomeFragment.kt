@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setCounter() {
-        val duration = 81200000 //6 hours
+        val duration = 21600000 //4   //3 600 000 millisecond per hour
         object : CountDownTimer(duration.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var millisUntilFinished = millisUntilFinished
