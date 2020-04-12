@@ -80,7 +80,7 @@
                 android:id="@+id/speakersAgenda"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_10"
+                android:layout_margin="@dimen/space_5"
                 android:layout_weight="1"
                 android:text=""
                 android:textColor="@color/app_color_pink" />

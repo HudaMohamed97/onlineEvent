@@ -41,7 +41,7 @@ class LoginFragment : Fragment(), LoginInterface {
             savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.login_fragment, container, false)
-     //   (activity as MainActivity).setDrawerLocked(true)
+        //   (activity as MainActivity).setDrawerLocked(true)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         return root
     }
@@ -183,6 +183,8 @@ class LoginFragment : Fragment(), LoginInterface {
         val token = "Bearer " + responseModelData.access_token
         loginPrefsEditor.putString("accessToken", token)
         loginPrefsEditor.putString("Name", responseModelData.account!!.name)
+        loginPrefsEditor.putString("email", responseModelData.account!!.email)
+        loginPrefsEditor.putString("bio", responseModelData.account!!.bio)
         loginPrefsEditor.putString("photo", responseModelData.account.photo)
         loginPrefsEditor.putInt("userId", responseModelData.account.id)
         loginPrefsEditor.commit()

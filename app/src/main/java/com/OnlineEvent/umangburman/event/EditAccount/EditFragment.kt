@@ -32,6 +32,9 @@ class EditFragment : Fragment(), LoginInterface {
     private lateinit var editViewModel: EditViewModel
     private lateinit var loginPreferences: SharedPreferences
     private var fileUri: String = ""
+    private var userEmail: String = ""
+    private var userName: String = ""
+    private var userBio: String = ""
 
 
     override fun onCreateView(
@@ -48,16 +51,23 @@ class EditFragment : Fragment(), LoginInterface {
         super.onViewCreated(view, savedInstanceState)
         setClickListeners()
         setProfileImage()
-        //EditAccountData()
     }
 
     override fun setClickListeners() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", MODE_PRIVATE)
+        email_editText.hint = loginPreferences.getString("email", "")
+        name_editText.hint = loginPreferences.getString("Name", "")
+
+
         upload_image.setOnClickListener {
             isStoragePermissionGranted()
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             this.startActivityForResult(photoPickerIntent, 1)
+        }
+
+        submit_button.setOnClickListener {
+            editAccountData()
         }
 
     }
@@ -70,15 +80,31 @@ class EditFragment : Fragment(), LoginInterface {
     }
 
 
-    private fun EditAccountData(file: String, email: String, name: String, bio: String, auth: String) {
-        myAccountProgressBar.visibility = View.VISIBLE
+    private fun editAccountData() {
+        userName = name_editText.text.toString()
+        userEmail = email_editText.text.toString()
+        userBio = bio_editText.text.toString()
+        if (fileUri == "") {
+            val photo = loginPreferences.getString("photo", "")
+            fileUri = photo
+        }
+        if (email_editText.text.toString() == "") {
+            userEmail = email_editText.hint.toString()
+        }
+        if (name_editText.text.toString() == "") {
+            userName = name_editText.hint.toString()
+        }
+        if (bio_editText.text.toString() == "") {
+            userBio = name_editText.hint.toString()
+        }
+        editAccountProgressBar.visibility = View.VISIBLE
         val accessToken = loginPreferences.getString("accessToken", "")
         if (accessToken != null) {
-            editViewModel.updateAccount(file, email, name, bio, auth)
+            editViewModel.updateAccount(fileUri, userEmail, userName, userBio, accessToken)
         }
 
         editViewModel.getStatues().observe(this, Observer {
-            myAccountProgressBar.visibility = View.GONE
+            editAccountProgressBar.visibility = View.GONE
             if (it != null) {
                 Toast.makeText(activity, "Updated Successfully", Toast.LENGTH_SHORT).show()
             } else {
@@ -97,6 +123,7 @@ class EditFragment : Fragment(), LoginInterface {
                 val selectedImage = data?.data
                 fileUri = selectedImage?.let { getPath(it) }.toString()
                 imageProfile.setImageURI(selectedImage)
+                text.visibility = View.GONE
                 imageProfile.visibility = View.VISIBLE
             }
 
@@ -105,13 +132,13 @@ class EditFragment : Fragment(), LoginInterface {
     private fun getPath(uri: Uri): String {
         val projection = arrayOf(MediaStore.MediaColumns.DATA)
         val cursor = activity!!.contentResolver.query(uri, projection, null, null, null);
-        val column_index = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
+        val columnIndex = cursor?.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)
         cursor?.moveToFirst()
-        if (column_index != null) {
-            cursor.getString(column_index)
+        if (columnIndex != null) {
+            cursor.getString(columnIndex)
         }
 
-        return column_index?.let { cursor.getString(it) }!!
+        return columnIndex?.let { cursor.getString(it) }!!
     }
 
     private fun isStoragePermissionGranted(): Boolean {
