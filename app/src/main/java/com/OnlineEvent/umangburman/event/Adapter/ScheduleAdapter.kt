@@ -53,9 +53,14 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
         val end = modelFeed.end_date
         holder.time.text = "$start $end"
         holder.EventName.text = modelFeed.name
-        holder.moreButton.setOnClickListener{
+        holder.moreButton.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClicked(position)
+            }
+        }
+        holder.register_Button.setOnClickListener {
+            if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
+                onItemClickListener.onRegisterEventClicked(position)
             }
         }
 
@@ -67,13 +72,15 @@ class ScheduleAdapter(modelFeedArrayList: ArrayList<ScheduleResponse>) :
         var eventDescription: TextView = itemView.findViewById<View>(R.id.eventDescription) as TextView
         var EventName: TextView = itemView.findViewById<View>(R.id.EventName) as TextView
         var time: TextView = itemView.findViewById<View>(R.id.time) as TextView
-        var moreButton = itemView.findViewById<Button>(R.id.learnMoreButton)
+        var moreButton: Button = itemView.findViewById(R.id.learnMoreButton)
+        var register_Button: Button = itemView.findViewById(R.id.register_Button)
 
 
     }
 
     interface OnClickListener {
         fun onItemClicked(position: Int)
+        fun onRegisterEventClicked(position: Int)
     }
 
     fun setOnCommentListener(onCommentClickListener: OnClickListener) {

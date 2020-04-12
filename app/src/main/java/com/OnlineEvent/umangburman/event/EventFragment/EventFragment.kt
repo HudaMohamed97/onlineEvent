@@ -104,6 +104,9 @@ class EventFragment : Fragment() {
         recyclerView.adapter = scheduleAdapter
         val context = this
         scheduleAdapter.setOnCommentListener(object : ScheduleAdapter.OnClickListener {
+            override fun onRegisterEventClicked(position: Int) {
+            }
+
             override fun onItemClicked(position: Int) {
                 val eventId = modelFeedArrayList[position].id
                 val bundle = Bundle()

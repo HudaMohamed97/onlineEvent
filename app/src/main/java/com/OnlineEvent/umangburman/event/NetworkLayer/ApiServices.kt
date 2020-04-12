@@ -25,6 +25,9 @@ interface ApiServices {
     @GET("events/{event}")
     fun getEventDescription(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<EventDescriptionModel>
 
+    @POST("events/{event}/register-to-event")
+    fun registerEvent(@Path("event") event: Int, @Header("Authorization") authHeader: String): Call<SubmitModel>
+
     @GET("home")
     fun getHomeData(@Header("Authorization") authHeader: String): Call<HomeResponseModel>
 

@@ -254,6 +254,7 @@ class ScheduleFragment : Fragment() {
                     position: Int,
                     id: Long
             ) {
+                hideKeyboard()
                 speakerId = speakerList[position].id
             }
 
@@ -277,6 +278,11 @@ class ScheduleFragment : Fragment() {
         recyclerView.adapter = scheduleAdapter
         val context = this
         scheduleAdapter.setOnCommentListener(object : ScheduleAdapter.OnClickListener {
+            override fun onRegisterEventClicked(position: Int) {
+                val eventId = modelFeedArrayList[position].id
+                registerToEvent(eventId)
+            }
+
             override fun onItemClicked(position: Int) {
                 val eventId = modelFeedArrayList[position].id
                 val bundle = Bundle()
@@ -301,6 +307,32 @@ class ScheduleFragment : Fragment() {
         })
 
     }
+
+    private fun registerToEvent(eventId: Int) {
+        scheduleProgressBar.visibility = View.VISIBLE
+        val accessToken = loginPreferences.getString("accessToken", "")
+
+        if (accessToken != null) {
+            scheduleViewModel.registerToEvent(eventId, accessToken)
+        }
+        scheduleViewModel.getRegisterData().observe(this, Observer {
+            scheduleProgressBar.visibility = View.GONE
+            if (it != null) {
+                if (it.title == "error" && it.type == "error")
+                    Toast.makeText(
+                            activity,
+                            "You Already Register To This Event Before",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                else {
+                    Toast.makeText(activity, "Submitted Successfully", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 
     private fun hideKeyboard() {
         val view = activity?.currentFocus

@@ -1,10 +1,7 @@
 package com.OnlineEvent.umangburman.event.SchduleFragment
 
 import androidx.lifecycle.MutableLiveData
-import com.OnlineEvent.umangburman.event.Models.SpeakerData
-import com.OnlineEvent.umangburman.event.Models.SpeakerProfileModel
-import com.OnlineEvent.umangburman.event.Models.SpeakerResponseModel
-import com.OnlineEvent.umangburman.event.Models.SpeakersResponseModel
+import com.OnlineEvent.umangburman.event.Models.*
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponseModel
 import com.OnlineEvent.umangburman.event.NetworkLayer.Webservice
 import retrofit2.Call
@@ -29,6 +26,31 @@ class ScheduleRepository {
                     }
 
                     override fun onFailure(call: Call<ScheduleResponseModel>, t: Throwable) {
+                        userData.value = null
+                    }
+                })
+        return userData
+    }
+
+    fun registerToEvent(eventId: Int, accessToken: String): MutableLiveData<SubmitModel> {
+        val userData = MutableLiveData<SubmitModel>()
+        Webservice.getInstance().api.registerEvent(eventId, accessToken)
+                .enqueue(object : Callback<SubmitModel> {
+                    override fun onResponse(
+                            call: Call<SubmitModel>, response: Response<SubmitModel>
+                    ) {
+                        if (response.isSuccessful) {
+                            userData.value = response.body()
+                        } else {
+                            if (response.code() == 400) {
+                                userData.value = SubmitModel("error", "error")
+                            } else {
+                                userData.value = response.body()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
                         userData.value = null
                     }
                 })
@@ -166,16 +188,16 @@ class ScheduleRepository {
             )
         } else if (month == "" && speaker != -1 && topic == "") {
             body = mapOf(
-                    "speaker_id" to month
+                    "speaker_id" to speaker.toString()
             )
         } else if (month == "" && speaker != -1 && topic != "") {
             body = mapOf(
-                    "speaker_id" to month,
+                    "speaker_id" to speaker.toString(),
                     "topic" to topic
             )
         } else if (month == "" && speaker == -1 && topic != "") {
             body = mapOf(
-                    "topic" to month
+                    "topic" to topic
             )
         }
 
