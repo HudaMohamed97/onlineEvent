@@ -86,6 +86,11 @@ class AgendaFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
         }
+        backButton.setOnClickListener{
+            NavHostFragment.findNavController(this).navigateUp()
+
+        }
+
         recyclerView = root!!.findViewById(R.id.agendaRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
     }

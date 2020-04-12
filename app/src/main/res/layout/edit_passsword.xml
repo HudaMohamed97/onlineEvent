@@ -165,6 +165,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_10"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -178,7 +179,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Edit Aaccount"
+                                android:text="Edit Password"
                                 android:textColor="@color/app_color_pink" />
 
                             <View
@@ -188,17 +189,6 @@
                                 android:background="@color/app_color_pink" />
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/changePassButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/app_color_pink"
-                            android:text="Change Password"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,88 +211,40 @@
 
 
                             <EditText
-                                android:id="@+id/name_editText"
+                                android:id="@+id/oldPassword_editText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/space_10"
                                 android:background="@drawable/background_edittext"
-                                android:hint="Name"
+                                android:hint="Old Password"
+                                android:inputType="textPassword"
                                 android:padding="@dimen/space_10"
                                 android:textColor="@color/app_color_pink" />
 
                             <EditText
-                                android:id="@+id/email_editText"
+                                android:id="@+id/newPass_editText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/space_10"
                                 android:background="@drawable/background_edittext"
-                                android:hint="Email address"
+                                android:hint="New Password"
+                                android:inputType="textPassword"
                                 android:padding="@dimen/space_10"
                                 android:textColor="@color/app_color_pink" />
 
 
                             <EditText
-                                android:id="@+id/bio_editText"
+                                android:id="@+id/rePass_editText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/background_edittext"
-                                android:hint="Bio"
+                                android:hint="Re-Password"
+                                android:inputType="textPassword"
                                 android:padding="@dimen/space_10"
                                 android:textColor="@color/app_color_pink" />
-
-                            <Button
-                                android:id="@+id/upload_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:layout_marginEnd="@dimen/space_20"
-                                android:background="@drawable/pink_background_edittext"
-                                android:backgroundTint="@color/app_color_pink"
-                                android:clickable="true"
-                                android:elevation="5dp"
-                                android:focusable="true"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/profile"
-                                android:text="upload"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/space_8"
-                                android:visibility="visible" />
-
-                            <LinearLayout
-                                android:id="@+id/photo"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="-30dp"
-                                android:layout_marginBottom="@dimen/space_10"
-                                android:background="@drawable/background_edittext"
-                                android:hint="choose Photo"
-                                android:orientation="vertical"
-                                android:padding="@dimen/space_12"
-                                android:textColor="@color/app_color_pink">
-
-                                <TextView
-                                    android:id="@id/text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="choose Photo"
-                                    android:textColor="@color/app_color_pink"
-                                    android:visibility="visible" />
-
-                                <ImageView
-                                    android:id="@+id/imageProfile"
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/space_10"
-                                    android:visibility="gone">
-
-                                </ImageView>
-
-
-                            </LinearLayout>
 
                             <ProgressBar
-                                android:id="@+id/editAccountProgressBar"
+                                android:id="@+id/passwordProgressBar"
                                 style="?android:attr/progressBarStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"

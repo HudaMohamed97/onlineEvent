@@ -18,11 +18,6 @@ import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
 import kotlinx.android.synthetic.main.event_fragment.*
-import kotlinx.android.synthetic.main.event_fragment.about_button
-import kotlinx.android.synthetic.main.event_fragment.back
-import kotlinx.android.synthetic.main.event_fragment.backButton
-import kotlinx.android.synthetic.main.event_fragment.imgProfile
-import kotlinx.android.synthetic.main.event_fragment.scheduleProgressBar
 
 
 class EventFragment : Fragment() {

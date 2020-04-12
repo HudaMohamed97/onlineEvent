@@ -209,6 +209,7 @@
                         android:layout_height="45dp"
                         android:layout_marginRight="@dimen/space_20"
                         android:layout_weight="1"
+                        android:padding="@dimen/space_5"
                         android:background="@drawable/background_edittext"
                         android:orientation="horizontal">
 
@@ -227,6 +228,7 @@
                         android:id="@+id/filterTopic"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
+                        android:padding="@dimen/space_2"
                         android:layout_weight="1"
                         android:background="@drawable/background_edittext"
                         android:hint="   Filter"
@@ -251,6 +253,7 @@
                         android:layout_height="45dp"
                         android:layout_marginRight="@dimen/space_20"
                         android:layout_weight="1"
+                        android:padding="@dimen/space_5"
                         android:background="@drawable/background_edittext"
                         android:orientation="horizontal">
 

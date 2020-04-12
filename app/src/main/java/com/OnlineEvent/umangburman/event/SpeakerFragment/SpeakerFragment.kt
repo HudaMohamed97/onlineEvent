@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.SpeakerAdapter
 import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.R
-import kotlinx.android.synthetic.main.description_fragment.*
 import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
 import kotlinx.android.synthetic.main.speaker_fragment.*
 import kotlinx.android.synthetic.main.speaker_fragment.agenda_button
@@ -64,6 +62,14 @@ class SpeakerFragment : Fragment() {
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_ToDescription, bundle)
 
         }
+        back_Button.setOnClickListener{
+            NavHostFragment.findNavController(this).navigateUp()
+
+        }
+        back.setOnClickListener {
+            activity!!.finish()
+        }
+
         recyclerView = root.findViewById(R.id.scheduleRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
     }

@@ -83,16 +83,15 @@
 
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/backButton"
+                    android:id="@+id/back_Button"
                     android:layout_width="@dimen/space_28"
-                    android:layout_height="@dimen/space_28"
+                    android:layout_height="@dimen/space_20"
                     android:layout_margin="10dp"
-                    android:text="LogOut"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/logout_icon" />
+                    app:srcCompat="@mipmap/back_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout

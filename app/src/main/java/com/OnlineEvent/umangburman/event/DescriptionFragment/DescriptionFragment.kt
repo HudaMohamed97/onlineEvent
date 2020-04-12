@@ -16,6 +16,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.R
 import kotlinx.android.synthetic.main.description_fragment.*
+import kotlinx.android.synthetic.main.description_fragment.back
+import kotlinx.android.synthetic.main.description_fragment.backButton
+import kotlinx.android.synthetic.main.event_fragment.*
 
 
 class DescriptionFragment : Fragment() {
@@ -60,6 +63,9 @@ class DescriptionFragment : Fragment() {
         backButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
 
+        }
+        back.setOnClickListener {
+            activity!!.finish()
         }
 
     }

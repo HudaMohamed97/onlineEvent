@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.SpeakerAdapter
 import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
@@ -44,6 +45,12 @@ class SpeakerProfileFragment : Fragment() {
 
     private fun setClickListeners() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
+        backButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+        }
+        back.setOnClickListener {
+           activity!!.finish()
+        }
     }
 
 

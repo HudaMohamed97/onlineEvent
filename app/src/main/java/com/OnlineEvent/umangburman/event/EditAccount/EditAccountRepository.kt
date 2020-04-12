@@ -57,4 +57,35 @@ class EditAccountRepository {
                 })
         return updateData
     }
+
+    fun updatePassword(
+            currentPass: String,
+            newPass: String,
+            accessToken: String
+    ): MutableLiveData<AccountModelData> {
+        val updateData = MutableLiveData<AccountModelData>()
+        val body = mapOf(
+                "password" to newPass,
+                "current_password" to currentPass
+        )
+        Webservice.getInstance().api.updatePassword(body, accessToken)
+                .enqueue(object : Callback<AccountModelData> {
+                    override fun onResponse(
+                            call: Call<AccountModelData>,
+                            response: Response<AccountModelData>
+                    ) {
+                        if (response.isSuccessful) {
+                            response.raw()
+                            updateData.value = response.body()
+                        } else {
+                            updateData.value = response.body()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AccountModelData>, t: Throwable) {
+                        updateData.value = null
+                    }
+                })
+        return updateData
+    }
 }

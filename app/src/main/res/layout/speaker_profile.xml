@@ -85,7 +85,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/backButton"
                     android:layout_width="@dimen/space_28"
-                    android:layout_height="@dimen/space_28"
+                    android:layout_height="@dimen/space_20"
                     android:layout_margin="10dp"
                     android:text="LogOut"
                     android:textColor="@color/black"

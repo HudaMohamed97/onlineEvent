@@ -16,11 +16,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.LoginFragment.LoginViewModel
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import com.example.catapplication.utilies.Validation
 import com.example.myapplication.LoginFragment.LoginInterface
+import kotlinx.android.synthetic.main.edit_passsword.*
 import kotlinx.android.synthetic.main.reset_password_fragment.*
+import kotlinx.android.synthetic.main.reset_password_fragment.backButton
 
 
 class ResetPasswordFragment : Fragment(), LoginInterface {
@@ -38,7 +39,7 @@ class ResetPasswordFragment : Fragment(), LoginInterface {
             savedInstanceState: Bundle?
     ): View? {
         root = inflater.inflate(R.layout.reset_password_fragment, container, false)
-       // (activity as MainActivity).setDrawerLocked(true)
+        // (activity as MainActivity).setDrawerLocked(true)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         return root
     }
@@ -61,6 +62,10 @@ class ResetPasswordFragment : Fragment(), LoginInterface {
         backButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
         }
+        back.setOnClickListener {
+            activity!!.finish()
+        }
+
 
 
         button.setOnClickListener {

@@ -23,8 +23,13 @@ import com.OnlineEvent.umangburman.event.R
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner
 import kotlinx.android.synthetic.main.first_fragment.backButton
 import kotlinx.android.synthetic.main.schdule_fragment.*
+import kotlinx.android.synthetic.main.schdule_fragment.about_button
+import kotlinx.android.synthetic.main.schdule_fragment.back
 import kotlinx.android.synthetic.main.schdule_fragment.imgProfile
 import kotlinx.android.synthetic.main.schdule_fragment.myevent_button
+import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
+import kotlinx.android.synthetic.main.speaker_fragment.*
+import kotlinx.android.synthetic.main.speaker_profile.*
 import java.util.*
 
 
@@ -47,8 +52,6 @@ class ScheduleFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        /* (activity as MainActivity).setDrawerLocked(false)
-         (activity as MainActivity).showItem("second")*/
         scheduleViewModel = ViewModelProviders.of(this).get(ScheduleViewModel::class.java)
         root = inflater.inflate(R.layout.schdule_fragment, container, false)
         return root
@@ -98,6 +101,9 @@ class ScheduleFragment : Fragment() {
         }
         backButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
+        }
+        back.setOnClickListener {
+            activity!!.finish()
         }
 
 
@@ -269,8 +275,13 @@ class ScheduleFragment : Fragment() {
         scheduleAdapter = ScheduleAdapter(modelFeedArrayList)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = scheduleAdapter
+        val context = this
         scheduleAdapter.setOnCommentListener(object : ScheduleAdapter.OnClickListener {
             override fun onItemClicked(position: Int) {
+                val eventId = modelFeedArrayList[position].id
+                val bundle = Bundle()
+                bundle.putInt("EventId", eventId)
+                NavHostFragment.findNavController(context).navigate(R.id.action_Event_ToDescription, bundle)
             }
 
 

@@ -12,11 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.HomeFragment.HomeViewModel
-import com.OnlineEvent.umangburman.event.MainActivity
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import com.example.myapplication.LoginFragment.LoginInterface
 import kotlinx.android.synthetic.main.my_account.*
+import kotlinx.android.synthetic.main.my_account.back
+import kotlinx.android.synthetic.main.my_account.imgProfile
 import kotlinx.android.synthetic.main.reset_password_fragment.*
 
 
@@ -48,6 +49,13 @@ class AccountFragment : Fragment(), LoginInterface {
         editButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Account_to_editAccount)
 
+        }
+        back_Button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+
+        }
+        back.setOnClickListener {
+            activity!!.finish()
         }
     }
 

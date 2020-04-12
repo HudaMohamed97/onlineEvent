@@ -78,11 +78,10 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/backButton"
+                android:id="@+id/back_Button"
                 android:layout_width="@dimen/space_28"
                 android:layout_height="@dimen/space_20"
                 android:layout_margin="10dp"
-                android:text="LogOut"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -142,10 +141,10 @@
                 android:layout_weight="1"
                 android:background="@color/app_color_pink"
                 android:clickable="true"
-                android:visibility="gone"
                 android:gravity="center"
                 android:text="Network"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </LinearLayout>
 
 
@@ -197,7 +196,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="My Event  : Description"
+                        android:text="My Event  : Speakers"
                         android:textColor="@color/app_color_pink" />
 
                     <View
@@ -226,7 +225,6 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@color/white"
                             android:clickable="true"
                             android:gravity="center"
                             android:text="Description"

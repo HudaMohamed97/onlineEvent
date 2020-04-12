@@ -202,10 +202,16 @@
         android:id="@+id/EditFragment"
         android:name="com.OnlineEvent.umangburman.event.EditAccount.EditFragment"
         tools:layout="@layout/edit_account">
+        <action
+            android:id="@+id/action_EditFragment_To_EditPassword"
+            app:destination="@id/EditPasswordFragment" />
+    </fragment>
 
-        <!-- <action
-             android:id="@+id/action_Event_To_Speakers"
-             app:destination="@id/SpeakersFragment" />-->
+    <fragment
+        android:id="@+id/EditPasswordFragment"
+        android:name="com.OnlineEvent.umangburman.event.EditPassword.EditPasswordFragment"
+        tools:layout="@layout/edit_passsword">
+
     </fragment>
     <activity
         android:id="@+id/secondActivity"

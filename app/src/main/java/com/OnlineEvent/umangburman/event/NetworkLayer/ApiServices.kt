@@ -55,6 +55,9 @@ interface ApiServices {
     @GET("account/me")
     fun getMyAccount(@Header("Authorization") authHeader: String): Call<AccountModelData>
 
+    @POST("account/update-password")
+    fun updatePassword(@Body body: Map<String, String>, @Header("Authorization") authHeader: String): Call<AccountModelData>
+
     @Multipart
     @POST("account/update")
     fun updateAccount(

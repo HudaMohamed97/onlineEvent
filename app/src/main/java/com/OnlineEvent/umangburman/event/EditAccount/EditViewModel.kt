@@ -8,6 +8,7 @@ import com.example.myapplication.Models.AccountModelData
 class EditViewModel : ViewModel() {
     private var repositoryHelper: EditAccountRepository = EditAccountRepository()
     private lateinit var mutableLiveData: MutableLiveData<AccountModelData>
+    private lateinit var passMutableLiveData: MutableLiveData<AccountModelData>
 
 
     fun updateAccount(file: String, email: String, name: String, bio: String, auth: String) {
@@ -17,6 +18,15 @@ class EditViewModel : ViewModel() {
 
     fun getStatues(): MutableLiveData<AccountModelData> {
         return mutableLiveData
+    }
+
+    fun updatePassword(currentPass: String, newPass: String, auth: String) {
+        passMutableLiveData = repositoryHelper.updatePassword(currentPass, newPass, auth)
+
+    }
+
+    fun getPasswordStatues(): MutableLiveData<AccountModelData> {
+        return passMutableLiveData
     }
 
 
