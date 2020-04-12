@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
-    android:background="@color/white"
+    android:layout_marginBottom="10dp"
+    android:background="@color/app_color_pink"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,16 +21,16 @@
             android:layout_height="20dp"
             android:layout_marginLeft="@dimen/space_20"
             android:layout_marginRight="@dimen/space_20"
-            app:srcCompat="@mipmap/notifications_icon"
+            app:srcCompat="@mipmap/notification_icon"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/activityName"
+            android:id="@+id/notificaionName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="NotificationName"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

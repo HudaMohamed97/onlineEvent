@@ -17,10 +17,17 @@ import com.OnlineEvent.umangburman.event.Adapter.SpeakerAdapter
 import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.agenda_fragment.*
 import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
 import kotlinx.android.synthetic.main.speaker_fragment.*
+import kotlinx.android.synthetic.main.speaker_fragment.about_button
 import kotlinx.android.synthetic.main.speaker_fragment.agenda_button
+import kotlinx.android.synthetic.main.speaker_fragment.back
 import kotlinx.android.synthetic.main.speaker_fragment.descriptionTab
+import kotlinx.android.synthetic.main.speaker_fragment.imgProfile
+import kotlinx.android.synthetic.main.speaker_fragment.myevent_button
+import kotlinx.android.synthetic.main.speaker_fragment.schedule_button
 
 class SpeakerFragment : Fragment() {
     private lateinit var root: View
@@ -46,6 +53,7 @@ class SpeakerFragment : Fragment() {
         setClickListeners()
         callSpeakersData(eventId, false)
         initRecyclerView()
+        setProfileImage()
     }
 
     private fun setClickListeners() {
@@ -70,9 +78,33 @@ class SpeakerFragment : Fragment() {
             activity!!.finish()
         }
 
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
+
         recyclerView = root.findViewById(R.id.scheduleRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
     }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
+    }
+
 
 
     private fun callSpeakersData(eventId: Int, fromLoadMore: Boolean) {

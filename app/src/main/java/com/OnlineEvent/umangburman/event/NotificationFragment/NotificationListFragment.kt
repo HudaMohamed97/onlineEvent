@@ -1,4 +1,4 @@
-package com.huda.mypatienttracker.NotificationFragment
+package com.OnlineEvent.umangburman.event.NotificationFragment
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,19 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.OnlineEvent.umangburman.event.Adapter.notificationAdapter
 import com.OnlineEvent.umangburman.event.R
+import com.huda.mypatienttracker.NotificationFragment.NotificationListViewModel
+import kotlinx.android.synthetic.main.schdule_fragment.*
 
 
 class NotificationListFragment : Fragment() {
     private lateinit var root: View
     private lateinit var notificationListViewModel: NotificationListViewModel
-  /*  private val modelFeedArrayList = arrayListOf<PatientResponseData>()
-    private lateinit var patientAdapter: PatientAdapter*/
+    private val modelFeedArrayList = arrayListOf<String>()
+    private lateinit var notificationAdapter: notificationAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var loginPreferences: SharedPreferences
     var mHasReachedBottomOnce = false
@@ -32,7 +37,7 @@ class NotificationListFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        root = inflater.inflate(R.layout.notification_fragment_list, container, false)
+        root = inflater.inflate(R.layout.notification_fragment, container, false)
         notificationListViewModel =
                 ViewModelProviders.of(this).get(NotificationListViewModel::class.java)
         return root
@@ -46,63 +51,38 @@ class NotificationListFragment : Fragment() {
         // callPatients(1, false, false)
     }
 
-    /* private fun callPatients(page: Int, fromLoadMore: Boolean, fromRefresh: Boolean) {
-         if (fromLoadMore) {
-             LoadMoreNotificationProgressBar.visibility = View.VISIBLE
-         } else {
-             notificationProgressBar.visibility = View.VISIBLE
-         }
-         val accessToken = loginPreferences.getString("accessToken", "")
-         if (accessToken != null) {
-             patientaListViewModel.getPatients(page, "no update", "referal", accessToken)
-         }
-         patientaListViewModel.getData().observe(this, Observer {
-             if (fromLoadMore) {
-                 LoadMoreNotificationProgressBar.visibility = View.GONE
-             } else {
-                 modelFeedArrayList.clear()
-                 notificationProgressBar.visibility = View.GONE
-             }
-             if (fromRefresh) {
-                 currentPageNum = 1
-                 modelFeedArrayList.clear()
-             }
-             if (it != null) {
-                 currentPageNum = it.meta.current_page
-                 lastPageNum = it.meta.last_page
-                 for (data in it.data) {
-                     modelFeedArrayList.add(data)
-                 }
-                 if (modelFeedArrayList.size == 0) {
-                     *//*modelFeedArrayList.add(
-                        PatientResponseData(
-                            1,
-                            "name",
-                            "noUpdate",
-                            null,
-                            "kdkdsk"
-                        )
-                    )
-                    patientAdapter.notifyDataSetChanged()*//*
-                    Toast.makeText(activity, "No Patient Added Yet.", Toast.LENGTH_SHORT).show()
-
+    private fun callScheduleData(pageNum: Int, fromLoadMore: Boolean) {
+        scheduleProgressBar.visibility = View.VISIBLE
+        val accessToken = loginPreferences.getString("accessToken", "")
+        if (accessToken != null) {
+            notificationListViewModel.getNotification(accessToken)
+        }
+        notificationListViewModel.getNotificationData().observe(this, Observer {
+            scheduleProgressBar.visibility = View.GONE
+            if (it != null) {
+                /* lastPageNum = it.meta.last_page
+                 currentPageNum = it.meta.current_page*/
+               /* for (data in it.data) {
+                    modelFeedArrayList.add(data)
                 }
-                patientAdapter.notifyDataSetChanged()
+                if (modelFeedArrayList.size == 0) {
+                    Toast.makeText(activity, "No Events Added Yet.", Toast.LENGTH_SHORT).show()
+                }*/
+                notificationAdapter.notifyDataSetChanged()
                 mHasReachedBottomOnce = false
                 currentPageNum++
-
             } else {
                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
         })
     }
-*/
+
 
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-       // patientAdapter = PatientAdapter(modelFeedArrayList)
+        // patientAdapter = PatientAdapter(modelFeedArrayList)
         recyclerView.layoutManager = layoutManager
-       // recyclerView.adapter = patientAdapter
+        // recyclerView.adapter = patientAdapter
 /*
         patientAdapter.setOnCommentListener(object : PatientAdapter.OnCommentClickListener {
             override fun onDotsImageClicked(position: Int, fromTab: String) {

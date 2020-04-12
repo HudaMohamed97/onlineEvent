@@ -19,7 +19,14 @@ import com.OnlineEvent.umangburman.event.Adapter.AgendaAdapter
 import com.OnlineEvent.umangburman.event.Models.AgendaDaysData
 import com.OnlineEvent.umangburman.event.Models.Talks
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.agenda_fragment.*
+import kotlinx.android.synthetic.main.agenda_fragment.about_button
+import kotlinx.android.synthetic.main.agenda_fragment.backButton
+import kotlinx.android.synthetic.main.agenda_fragment.imgProfile
+import kotlinx.android.synthetic.main.agenda_fragment.myevent_button
+import kotlinx.android.synthetic.main.agenda_fragment.schedule_button
+import kotlinx.android.synthetic.main.agenda_fragment.speakersTab
 import kotlinx.android.synthetic.main.speaker_fragment.descriptionTab
 
 class AgendaFragment : Fragment() {
@@ -52,6 +59,7 @@ class AgendaFragment : Fragment() {
         setClickListeners()
         callAgendaData(eventId, false)
         initRecyclerView()
+        setProfileImage()
     }
 
     private fun setClickListeners() {
@@ -86,10 +94,26 @@ class AgendaFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Event_To_Speakers, bundle)
         }
-        backButton.setOnClickListener{
+        backButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
 
         }
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
+
 
         recyclerView = root!!.findViewById(R.id.agendaRecycler)
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
@@ -114,6 +138,13 @@ class AgendaFragment : Fragment() {
                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
 

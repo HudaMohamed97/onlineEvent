@@ -7,6 +7,7 @@ import com.example.myapplication.Models.AccountModelData
 import com.example.myapplication.Models.ResponseModelData
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -60,6 +61,9 @@ interface ApiServices {
 
     @POST("account/update-password")
     fun updatePassword(@Body body: Map<String, String>, @Header("Authorization") authHeader: String): Call<AccountModelData>
+
+    @GET("notifications")
+    fun getNotification(@Header("Authorization") authHeader: String): Call<ResponseBody>
 
     @Multipart
     @POST("account/update")

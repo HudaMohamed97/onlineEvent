@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_Home_to_muyAccount"
             app:destination="@id/AccountFragment" />
+        <action
+            android:id="@+id/action_Home_to_Notifcation"
+            app:destination="@id/NotificationFragment" />
     </fragment>
 
     <fragment
@@ -131,6 +134,19 @@
             android:id="@+id/action_Speaker_AgendaFragment"
             app:destination="@id/AgendaFragment" />
 
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
+
     </fragment>
 
     <fragment
@@ -211,6 +227,12 @@
         android:id="@+id/EditPasswordFragment"
         android:name="com.OnlineEvent.umangburman.event.EditPassword.EditPasswordFragment"
         tools:layout="@layout/edit_passsword">
+
+    </fragment>
+    <fragment
+        android:id="@+id/NotificationFragment"
+        android:name="com.OnlineEvent.umangburman.event.NotificationFragment.NotificationListFragment"
+        tools:layout="@layout/notification_fragment">
 
     </fragment>
     <activity

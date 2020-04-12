@@ -15,10 +15,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.description_fragment.*
+import kotlinx.android.synthetic.main.description_fragment.about_button
 import kotlinx.android.synthetic.main.description_fragment.back
 import kotlinx.android.synthetic.main.description_fragment.backButton
-import kotlinx.android.synthetic.main.event_fragment.*
+import kotlinx.android.synthetic.main.description_fragment.imgProfile
+import kotlinx.android.synthetic.main.description_fragment.myevent_button
+import kotlinx.android.synthetic.main.description_fragment.schedule_button
+import kotlinx.android.synthetic.main.description_fragment.time
+import kotlinx.android.synthetic.main.first_fragment.*
 
 
 class DescriptionFragment : Fragment() {
@@ -44,6 +50,7 @@ class DescriptionFragment : Fragment() {
         eventId = arguments?.getInt("EventId")!!
         setClickListeners()
         callEventsDescription(eventId)
+        setProfileImage()
     }
 
     private fun setClickListeners() {
@@ -59,6 +66,21 @@ class DescriptionFragment : Fragment() {
             bundle.putInt("EventId", eventId)
             NavHostFragment.findNavController(this).navigate(R.id.action_Speaker_AgendaFragment, bundle)
         }
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+
+        }
+        imgProfile.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
+        }
 
         backButton.setOnClickListener {
             NavHostFragment.findNavController(this).navigateUp()
@@ -69,6 +91,14 @@ class DescriptionFragment : Fragment() {
         }
 
     }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
+    }
+
 
 
     private fun callEventsDescription(eventId: Int) {

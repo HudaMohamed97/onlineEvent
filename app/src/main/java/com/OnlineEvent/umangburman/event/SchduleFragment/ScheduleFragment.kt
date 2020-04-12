@@ -20,7 +20,9 @@ import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
 import com.OnlineEvent.umangburman.event.Models.DataSpeaker
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner
+import kotlinx.android.synthetic.main.about_fragment.*
 import kotlinx.android.synthetic.main.first_fragment.backButton
 import kotlinx.android.synthetic.main.schdule_fragment.*
 import kotlinx.android.synthetic.main.schdule_fragment.about_button
@@ -28,8 +30,6 @@ import kotlinx.android.synthetic.main.schdule_fragment.back
 import kotlinx.android.synthetic.main.schdule_fragment.imgProfile
 import kotlinx.android.synthetic.main.schdule_fragment.myevent_button
 import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
-import kotlinx.android.synthetic.main.speaker_fragment.*
-import kotlinx.android.synthetic.main.speaker_profile.*
 import java.util.*
 
 
@@ -64,6 +64,7 @@ class ScheduleFragment : Fragment() {
         initRecyclerView()
         initializeMonthSpinner()
         callSpeakersData()
+        setProfileImage()
     }
 
     private fun setClickListeners() {
@@ -81,7 +82,7 @@ class ScheduleFragment : Fragment() {
                 if (month == "All Months") {
                     callScheduleData(1, false)
                 } else {
-                    callScheduleDataByFilter(topic, month, -1, 1, false)
+                    callScheduleDataByFilter(topic, month, speakerId, 1, false)
                 }
             else {
                 Toast.makeText(activity, "please Choose filter Type", Toast.LENGTH_SHORT).show()
@@ -178,6 +179,13 @@ class ScheduleFragment : Fragment() {
                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
     private fun callSpeakersData() {

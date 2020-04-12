@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.HomeFragment.HomeViewModel
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.about_fragment.*
 import kotlinx.android.synthetic.main.about_fragment.back
 import kotlinx.android.synthetic.main.about_fragment.backButton
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.about_fragment.imgProfile
 import kotlinx.android.synthetic.main.about_fragment.myevent_button
 import kotlinx.android.synthetic.main.about_fragment.schedule_button
 import kotlinx.android.synthetic.main.first_fragment.*
+import kotlinx.android.synthetic.main.speaker_fragment.*
 
 
 class AboutFragment : Fragment() {
@@ -39,6 +41,7 @@ class AboutFragment : Fragment() {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         setClickListener()
         callAboutData()
+        setProfileImage()
     }
 
     private fun setClickListener() {
@@ -60,6 +63,13 @@ class AboutFragment : Fragment() {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
         }
 
+    }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
     private fun callAboutData() {

@@ -17,7 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
 import com.OnlineEvent.umangburman.event.Models.scheduleModels.ScheduleResponse
 import com.OnlineEvent.umangburman.event.R
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.event_fragment.*
+import kotlinx.android.synthetic.main.event_fragment.about_button
+import kotlinx.android.synthetic.main.event_fragment.back
+import kotlinx.android.synthetic.main.event_fragment.backButton
+import kotlinx.android.synthetic.main.event_fragment.imgProfile
+import kotlinx.android.synthetic.main.event_fragment.schedule_button
 
 
 class EventFragment : Fragment() {
@@ -43,6 +49,7 @@ class EventFragment : Fragment() {
         setClickListeners()
         callMyEventsData(1, false)
         initRecyclerView()
+        setProfileImage()
     }
 
     private fun setClickListeners() {
@@ -95,6 +102,13 @@ class EventFragment : Fragment() {
                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setProfileImage() {
+        val photo = loginPreferences.getString("photo", "")
+        Glide.with(context!!).load(photo).centerCrop()
+                .placeholder(R.drawable.profile)
+                .error(R.drawable.profile).into(imgProfile)
     }
 
     private fun initRecyclerView() {
