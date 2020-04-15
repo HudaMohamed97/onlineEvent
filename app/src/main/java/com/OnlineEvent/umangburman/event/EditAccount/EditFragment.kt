@@ -73,6 +73,23 @@ class EditFragment : Fragment(), LoginInterface {
             NavHostFragment.findNavController(this).navigate(R.id.action_EditFragment_To_EditPassword)
 
         }
+        backButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+
+        }
+        back.setOnClickListener {
+            activity!!.finish()
+        }
+
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+        }
 
     }
 

@@ -20,8 +20,14 @@ import com.OnlineEvent.umangburman.event.EventFragment.EventViewModel
 import com.OnlineEvent.umangburman.event.Models.SpeakerData
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.edit_account.*
 import kotlinx.android.synthetic.main.schdule_fragment.scheduleProgressBar
 import kotlinx.android.synthetic.main.speaker_profile.*
+import kotlinx.android.synthetic.main.speaker_profile.about_button
+import kotlinx.android.synthetic.main.speaker_profile.back
+import kotlinx.android.synthetic.main.speaker_profile.backButton
+import kotlinx.android.synthetic.main.speaker_profile.myevent_button
+import kotlinx.android.synthetic.main.speaker_profile.schedule_button
 
 class SpeakerProfileFragment : Fragment() {
     private lateinit var root: View
@@ -51,6 +57,18 @@ class SpeakerProfileFragment : Fragment() {
         back.setOnClickListener {
            activity!!.finish()
         }
+
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+        }
+
+
     }
 
 

@@ -163,8 +163,8 @@
                 android:id="@+id/mainLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/space_20"
-                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginLeft="@dimen/space_15"
+                android:layout_marginRight="@dimen/space_15"
                 android:clickable="true"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -199,7 +199,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_10"
-                    android:layout_marginRight="@dimen/space_10"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -209,14 +208,14 @@
                         android:layout_height="45dp"
                         android:layout_marginRight="@dimen/space_20"
                         android:layout_weight="1"
-                        android:padding="@dimen/space_5"
+                        android:padding="7dp"
                         android:background="@drawable/background_edittext"
                         android:orientation="horizontal">
 
                         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                             android:id="@+id/monthSpinner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:spinnerMode="dropdown"
                             android:textColor="@color/not_black"
                             android:theme="@style/SpinnerThemeLight"
@@ -244,7 +243,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_10"
-                    android:layout_marginRight="@dimen/space_10"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -253,18 +251,18 @@
                         android:layout_height="45dp"
                         android:layout_marginRight="@dimen/space_20"
                         android:layout_weight="1"
-                        android:padding="@dimen/space_5"
+                        android:padding="5dp"
                         android:background="@drawable/background_edittext"
                         android:orientation="horizontal">
 
                         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                             android:id="@+id/speakersSpinner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:spinnerMode="dropdown"
                             android:textColor="@color/not_black"
                             android:theme="@style/SpinnerThemeLight"
-                            app:hintText="speaker" />
+                            app:hintText="Speaker" />
 
                     </LinearLayout>
 

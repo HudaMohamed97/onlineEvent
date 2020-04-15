@@ -92,6 +92,9 @@
             android:id="@+id/action_Home_to_About"
             app:destination="@id/AboutFragment" />
         <action
+            android:id="@+id/action_Event_ToDescription"
+            app:destination="@id/EventDescriptionFragment" />
+        <action
             android:id="@+id/action_Home_to_Event"
             app:destination="@id/EventFragment" />
         <action
@@ -155,6 +158,19 @@
         tools:layout="@layout/speaker_fragment">
 
         <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
+
+        <action
             android:id="@+id/action_Event_ToDescription"
             app:destination="@id/EventDescriptionFragment" />
         <action
@@ -192,11 +208,35 @@
         android:name="com.OnlineEvent.umangburman.event.ResetPasswordFragment.ResetPasswordFragment"
         tools:layout="@layout/reset_password_fragment">
 
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+
+
     </fragment>
     <fragment
         android:id="@+id/SpeakerProfileFragment"
         android:name="com.OnlineEvent.umangburman.event.SpeakerFragment.SpeakerProfileFragment"
         tools:layout="@layout/speaker_profile">
+
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
 
 
     </fragment>
@@ -213,6 +253,19 @@
         <action
             android:id="@+id/action_Event_To_Speakers"
             app:destination="@id/SpeakersFragment" />
+
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/EditFragment"
@@ -221,12 +274,38 @@
         <action
             android:id="@+id/action_EditFragment_To_EditPassword"
             app:destination="@id/EditPasswordFragment" />
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/EditPasswordFragment"
         android:name="com.OnlineEvent.umangburman.event.EditPassword.EditPasswordFragment"
         tools:layout="@layout/edit_passsword">
+
+        <action
+            android:id="@+id/action_Home_to_About"
+            app:destination="@id/AboutFragment" />
+        <action
+            android:id="@+id/action_Home_to_Schedule"
+            app:destination="@id/SchduleFragment" />
+        <action
+            android:id="@+id/action_Home_to_Event"
+            app:destination="@id/EventFragment" />
+        <action
+            android:id="@+id/action_Home_to_muyAccount"
+            app:destination="@id/AccountFragment" />
 
     </fragment>
     <fragment

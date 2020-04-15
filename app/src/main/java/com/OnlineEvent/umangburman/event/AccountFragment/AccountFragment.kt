@@ -16,9 +16,11 @@ import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import com.example.myapplication.LoginFragment.LoginInterface
 import kotlinx.android.synthetic.main.my_account.*
+import kotlinx.android.synthetic.main.my_account.about_button
 import kotlinx.android.synthetic.main.my_account.back
 import kotlinx.android.synthetic.main.my_account.imgProfile
-import kotlinx.android.synthetic.main.reset_password_fragment.*
+import kotlinx.android.synthetic.main.my_account.myevent_button
+import kotlinx.android.synthetic.main.my_account.schedule_button
 
 
 class AccountFragment : Fragment(), LoginInterface {
@@ -57,6 +59,18 @@ class AccountFragment : Fragment(), LoginInterface {
         back.setOnClickListener {
             activity!!.finish()
         }
+
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+        }
+
+
     }
 
     private fun setProfileImage() {

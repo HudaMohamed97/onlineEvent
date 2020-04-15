@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import com.OnlineEvent.umangburman.event.EditAccount.EditViewModel
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
@@ -44,6 +45,26 @@ class EditPasswordFragment : Fragment(), LoginInterface {
     }
 
     override fun setClickListeners() {
+        backButton.setOnClickListener {
+            NavHostFragment.findNavController(this).navigateUp()
+
+        }
+        back.setOnClickListener {
+            activity!!.finish()
+        }
+
+        about_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_About)
+        }
+        schedule_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Schedule)
+        }
+        myevent_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_Event)
+        }
+
+
+
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", MODE_PRIVATE)
         submit_button.setOnClickListener {
             currentPass = oldPassword_editText.text.toString()

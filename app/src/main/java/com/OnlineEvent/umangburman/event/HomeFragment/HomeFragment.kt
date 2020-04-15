@@ -20,9 +20,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.OnlineEvent.umangburman.event.Adapter.AdsAdapter
+import com.OnlineEvent.umangburman.event.Adapter.ScheduleAdapter
+import com.OnlineEvent.umangburman.event.Models.HomeModels.Ads
 import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.first_fragment.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -31,6 +38,10 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var video_view: VideoView
     private lateinit var loginPreferences: SharedPreferences
+    private lateinit var recyclerView: RecyclerView
+    private val modelFeedArrayList = arrayListOf<Ads>()
+    private lateinit var adsAdapter: AdsAdapter
+    private lateinit var mediaController: MediaController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
@@ -54,16 +65,45 @@ class HomeFragment : Fragment() {
         }
         setListeners()
         setProfileImage()
+        initRecyclerView()
     }
 
     private fun setListeners() {
+        scrollView.post {
+            run {
+                scrollView.fullScroll(View.FOCUS_UP)
+                scrollView.smoothScrollTo(0, 0)
+
+            }
+        }
+
         videoView.start()
-        val mediaController = MediaController(activity)
-        mediaController.setAnchorView(videoView)
-        videoView.setZOrderOnTop(true)
-        //videoView.setZOrderMediaOverlay(true)
+        videoLayout.setOnClickListener {
+            if (videoView.isPlaying) {
+                videoView.pause()
+                play_button.visibility = View.VISIBLE
+                videoView.visibility = View.GONE
+            } else {
+                play_button.visibility = View.GONE
+                videoView.visibility = View.VISIBLE
+                videoProgressBar.visibility = View.VISIBLE
+                videoView.start()
+            }
+        }
+        play_button.setOnClickListener {
+            if (videoView.isPlaying) {
+                videoView.pause()
+                play_button.visibility = View.VISIBLE
+                videoView.visibility = View.GONE
+            } else {
+                play_button.visibility = View.GONE
+                videoView.visibility = View.VISIBLE
+                videoProgressBar.visibility = View.VISIBLE
+                videoView.start()
+            }
+        }
+
         videoView.requestFocus()
-        videoView.setMediaController(mediaController)
         button.setOnClickListener {
             nextView()
         }
@@ -133,9 +173,9 @@ class HomeFragment : Fragment() {
         videoView.setZOrderOnTop(true)
         //videoView.setZOrderMediaOverlay(true)
         videoView.setVideoURI(uri)
-        val mediaController = MediaController(this.context)
-        mediaController.show(1)
-        videoView.setMediaController(mediaController)
+        // val mediaController = MediaController(this.context)
+        //  mediaController.show(1)
+        // videoView.setMediaController(mediaController)
         videoView.start()
         videoView.setOnPreparedListener {
             videoProgressBar.visibility = View.GONE
@@ -152,9 +192,11 @@ class HomeFragment : Fragment() {
         homeViewModel.homeData().observe(this, Observer {
             HomeProgressBar.visibility = View.GONE
             if (it != null) {
+                val time = it.event.remaining_time
+                val splitStr = time.split(" ")
+
                 mainLayout.visibility = View.VISIBLE
                 videoProgressBar.visibility = View.VISIBLE
-                //loadVideo(it.video)
                 loadVideo("https://www.demonuts.com/Demonuts/smallvideo.mp4")
                 // loadVideo(it.video)
                 val imageList = arrayListOf<String>()
@@ -166,8 +208,18 @@ class HomeFragment : Fragment() {
                         videoList.add(image.video_url)
                     }
                 }
+                for (item in it.ads) {
+                    modelFeedArrayList.add(item)
+                }
+                scrollView.post {
+                    run {
+                        scrollView.fullScroll(View.FOCUS_UP)
+                        scrollView.smoothScrollTo(0, 0)
+
+                    }
+                }
+                adsAdapter.notifyDataSetChanged()
                 setFlipperImage(imageList, videoList)
-                Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
 
             } else {
                 mainLayout.visibility = View.GONE
@@ -249,6 +301,15 @@ class HomeFragment : Fragment() {
         }
         return bitmap
     }
+
+    private fun initRecyclerView() {
+        recyclerView = root?.findViewById(R.id.adsRecycler)!!
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        adsAdapter = AdsAdapter(modelFeedArrayList)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adsAdapter
+    }
+
 
     private fun previousView() {
         flipper.setInAnimation(this.context, R.anim.slide_in_right)

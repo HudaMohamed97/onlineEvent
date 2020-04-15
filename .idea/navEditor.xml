@@ -155,6 +155,26 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_Home_to_About">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_Home_to_Event">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_Home_to_Schedule">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_Home_to_muyAccount">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_Speaker_AgendaFragment">
                               <value>
                                 <LayoutPositions />
@@ -222,6 +242,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_Home_to_Notifcation">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_Home_to_Schedule">
                               <value>
                                 <LayoutPositions />
@@ -259,6 +284,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="NotificationFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

@@ -46,9 +46,10 @@
 
                 <TextView
                     android:id="@+id/EventName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_5"
+                    android:layout_marginEnd="100dp"
                     android:text="hospitalName"
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -82,10 +83,11 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/register_Button"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="@dimen/space_50"
                     android:backgroundTint="@color/app_color_pink"
                     android:text="Register Now"
+                    android:layout_marginStart="@dimen/space_5"
                     android:textColor="@color/white"
                     android:textSize="@dimen/space_10"
                     android:visibility="visible"
