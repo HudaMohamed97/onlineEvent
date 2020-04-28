@@ -1,0 +1,68 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/container_other_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/gray_rounded_button"
+        android:orientation="vertical"
+        android:padding="2dp"
+        tools:ignore="RtlHardcoded">
+
+        <TextView
+            android:id="@+id/tv_other_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:padding="1dp"
+            android:textColor="@color/black"
+            tools:text="Hello, How are you?" />
+
+        <TextView
+            android:id="@+id/tv_other_msg_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            tools:text="12:00" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_my_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/pink_rounded_button"
+        android:orientation="vertical"
+        android:padding="2dp"
+        tools:ignore="RtlHardcoded">
+
+        <TextView
+            android:id="@+id/tv_my_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:padding="1dp"
+            android:textColor="@color/white"
+            tools:text="Hello, How are you?" />
+
+        <TextView
+            android:id="@+id/tv_my_msg_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            tools:text="12:00" />
+    </LinearLayout>
+
+</FrameLayout>
