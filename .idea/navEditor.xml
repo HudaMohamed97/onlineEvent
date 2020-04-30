@@ -126,6 +126,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="ChatFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="EditFragment">
                     <value>
                       <LayoutPositions>
@@ -312,6 +324,11 @@
                               </value>
                             </entry>
                             <entry key="action_Home_to_Schedule">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_Home_to_messages">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_Home_to_Notifcation"
             app:destination="@id/NotificationFragment" />
+        <action
+            android:id="@+id/action_Home_to_PostFragment"
+            app:destination="@id/PostFragment" />
     </fragment>
 
     <fragment
@@ -321,6 +324,12 @@
         android:id="@+id/ChatFragment"
         android:name="com.OnlineEvent.umangburman.event.ChatFragment.ChatFragment"
         tools:layout="@layout/chat_fragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/PostFragment"
+        android:name="com.OnlineEvent.umangburman.event.PostsFragment.PostsFragment"
+        tools:layout="@layout/post_fragment">
 
     </fragment>
     <activity

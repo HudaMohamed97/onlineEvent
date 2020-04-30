@@ -125,6 +125,9 @@ class HomeFragment : Fragment() {
         notification.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_messages)
         }
+        network_button.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_PostFragment)
+        }
         back.setOnClickListener {
             activity?.finish()
 
