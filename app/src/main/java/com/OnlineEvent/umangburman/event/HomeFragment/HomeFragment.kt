@@ -122,6 +122,9 @@ class HomeFragment : Fragment() {
         imgProfile.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_muyAccount)
         }
+        notification.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_Home_to_messages)
+        }
         back.setOnClickListener {
             activity?.finish()
 

@@ -15,6 +15,9 @@
             android:id="@+id/action_Home_to_About"
             app:destination="@id/AboutFragment" />
         <action
+            android:id="@+id/action_Home_to_messages"
+            app:destination="@id/ChatFragment" />
+        <action
             android:id="@+id/action_Home_to_Schedule"
             app:destination="@id/SchduleFragment" />
         <action
@@ -312,6 +315,12 @@
         android:id="@+id/NotificationFragment"
         android:name="com.OnlineEvent.umangburman.event.NotificationFragment.NotificationListFragment"
         tools:layout="@layout/notification_fragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="com.OnlineEvent.umangburman.event.ChatFragment.ChatFragment"
+        tools:layout="@layout/chat_fragment">
 
     </fragment>
     <activity

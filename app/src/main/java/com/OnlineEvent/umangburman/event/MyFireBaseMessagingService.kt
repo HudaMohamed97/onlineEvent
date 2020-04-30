@@ -46,7 +46,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
         )
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationBody)
-                // .setSmallIcon(R.mipmap.notification_icon)
+                .setSmallIcon(R.mipmap.notification_icon)
                 .setTimeoutAfter(3000)
                 .setAutoCancel(true)
         notificationManager.notify(0, builder.build())

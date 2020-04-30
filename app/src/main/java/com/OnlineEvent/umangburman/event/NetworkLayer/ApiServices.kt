@@ -17,7 +17,7 @@ interface ApiServices {
     @POST("auth/login")
     fun login(@Body loginRequestModel: LoginRequestModel): Call<ResponseModelData>
 
-    @POST("auth/login")
+    @POST("auth/reset-password")
     fun resetPassword(@Body email: Map<String, String>): Call<SubmitModel>
 
     @GET("about")

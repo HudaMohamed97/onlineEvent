@@ -59,15 +59,6 @@ class ResetPasswordFragment : Fragment(), LoginInterface {
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", MODE_PRIVATE)
         loginPrefsEditor = loginPreferences.edit()
 
-        backButton.setOnClickListener {
-            NavHostFragment.findNavController(this).navigateUp()
-        }
-        back.setOnClickListener {
-            activity!!.finish()
-        }
-
-
-
         button.setOnClickListener {
             checkErrorEnabled()
             hideKeyboard()
@@ -86,7 +77,7 @@ class ResetPasswordFragment : Fragment(), LoginInterface {
         loginViewModel.getResetData().observe(this, Observer {
             resetProgressBar.visibility = View.GONE
             if (it != null) {
-                Toast.makeText(activity, "Password Reset Successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Password Reset Successfully check your email please, Thanks.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
