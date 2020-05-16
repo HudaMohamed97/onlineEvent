@@ -323,6 +323,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_Home_to_PostFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_Home_to_Schedule">
                               <value>
                                 <LayoutPositions />
@@ -370,6 +375,18 @@
                     </value>
                   </entry>
                   <entry key="NotificationFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="PostFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">

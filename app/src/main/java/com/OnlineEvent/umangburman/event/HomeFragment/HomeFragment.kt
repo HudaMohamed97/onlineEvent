@@ -29,6 +29,7 @@ import com.OnlineEvent.umangburman.event.R
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.first_fragment.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
@@ -135,11 +136,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setCounter() {
-        val duration = 21600000 //4   //3 600 000 millisecond per hour
+        val duration = 1800000 //4   //3 600 000 millisecond per hour
         object : CountDownTimer(duration.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var millisUntilFinished = millisUntilFinished
-                val secondsInMilli: Long = 1000
+                val days = TimeUnit.HOURS.toDays(TimeUnit.MILLISECONDS.toHours(millisUntilFinished))
+                val hours = (TimeUnit.MILLISECONDS.toHours(millisUntilFinished) -
+                        TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millisUntilFinished)))
+                val minute = (TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) -
+                        TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)))
+                val seconds = (TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)))
+
+
+                /*val secondsInMilli: Long = 1000
                 val minutesInMilli = secondsInMilli * 60
                 val hoursInMilli = minutesInMilli * 60
 
@@ -149,9 +159,9 @@ class HomeFragment : Fragment() {
                 val elapsedMinutes = millisUntilFinished / minutesInMilli
                 millisUntilFinished %= minutesInMilli
 
-                val elapsedSeconds = millisUntilFinished / secondsInMilli
+                val elapsedSeconds = millisUntilFinished / secondsInMilli*/
 
-                val yy = String.format("%02d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds)
+                val yy = String.format("%02d:%02d:%02d:%02d", days, hours, minute, seconds)
                 Log.i("hhhhh", "timer sha8alll" + yy)
                 if (time != null) {
                     time.text = "Time Remaining : " + yy
